@@ -16,22 +16,35 @@ app.prepare().then(() => {
   const server = http.createServer(expressApp);
   const wss = new WebSocket.Server({ server, path: '/ws' });
 
-  console.log(port);
-
   // Configuración de WebSocket…
   wss.on('connection', ws => {
     console.log('Cliente conectado');
-    const interval = setInterval(() => {
-      const data = {
+  });
+
+  
+  const interval = setInterval(() => {
+
+    let data = [];
+    
+    for (let i = 1; i <= 20; i++) {
+      data.push({
+        id: i,
         heartRate: Math.floor(Math.random() * 40) + 60,
         oxygen: Math.floor(Math.random() * 10) + 90,
         timestamp: new Date().toISOString(),
-      };
+      });
+  
       console.log(data);
-      ws.send(JSON.stringify(data));
-    }, 2000);
-    // ws.on('close', () => clearInterval(interval));
-  });
+    }
+
+    wss.clients.forEach(client => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(data));
+      }
+    });
+
+  }, 2000);
+
 
   // Captura todas las rutas con regex (opción 1)
   expressApp.all(/.*/, (req, res) => handle(req, res));
