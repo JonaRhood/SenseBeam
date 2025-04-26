@@ -6,7 +6,7 @@ const next = require('next');
 const http = require('http');
 const WebSocket = require('ws');
 
-const port = process.env.DB_PORT;
+const port = process.env.PORT;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
