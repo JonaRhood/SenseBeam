@@ -13,7 +13,7 @@ export default function Home() {
   const [data, setData] = useState<WebSocketData[] | null>(null)
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8000/ws')
+    const ws = new WebSocket(`ws://localhost:8080/ws`)
     ws.onmessage = event => {
       console.log(event.data);
       setData(JSON.parse(event.data))
