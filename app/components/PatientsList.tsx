@@ -25,7 +25,7 @@ interface Patient {
     email: string,
 }
 
-export default function PatientsList({ searchText, onPatientSelect, openModal }: PatientsListProps) {
+export default function PatientsList({ searchText, onPatientSelect }: PatientsListProps) {
 
     const [fullList, setFullList] = useState<Patient[]>([]);
     const [list, setList] = useState<Patient[]>([]);

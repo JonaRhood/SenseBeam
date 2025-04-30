@@ -6,13 +6,7 @@ import { useAppDispatch } from "@/lib/hooks"
 import { setIsModalOpen } from "@/lib/features/todos/modalSlice"
 
 
-export default function Patient({ 
-  patient,
-  closeModal,
-}: { 
-  patient: string,
-  closeModal?: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+export default function Patient() {
 
     const dispatch = useAppDispatch();
 
@@ -34,7 +28,7 @@ export default function Patient({
           </div>
         </div>
       </div>
-      My Post: {patient}
+      My Post:
       <div>
         <Telemetry />
       </div>
