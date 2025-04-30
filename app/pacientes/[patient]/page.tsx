@@ -1,12 +1,12 @@
 // app/pacientes/[patients]/page.tsx
+"use client";
 
-import Link from "next/link"
 import Telemetry from "./components/Telemetry"
 import { useAppDispatch } from "@/lib/hooks"
 import { setIsModalOpen } from "@/lib/features/todos/modalSlice"
 
 
-export default function Patient() {
+export default function Patient({ params }: any) {
 
     const dispatch = useAppDispatch();
 
