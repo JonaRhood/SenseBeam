@@ -21,7 +21,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
     const [fullList, setFullList] = useState<Patient[]>([]);
     const [list, setList] = useState<Patient[]>([]);
-    
+
     useEffect(() => {
         const fetchPatients = async () => {
             const dataPatients = await fetch('https://dummyjson.com/users');
@@ -68,28 +68,27 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
 
     return (
-<div className="flex w-full max-h-[80vh]">
-
-            <table className="w-full shadow-md rounded-md">
+        <div className="flex w-full h-[0px]">
+            <table className="w-full rounded-md">
                 <thead className="bg-blue-100 sticky top-0 z-10 w-full">
                     <tr>
-                        <th className="thPatientsList">Imagen</th>
-                        <th className="thPatientsList" onClick={() => filterByType("lastName")}>Apellidos</th>
-                        <th className="thPatientsList" onClick={() => filterByType("firstName")}>Nombre</th>
-                        <th className="thPatientsList" onClick={() => filterByType("age")}>Edad</th>
-                        <th className="thPatientsList" onClick={() => filterByType("gender")}>Gender</th>
-                        <th className="thPatientsList" onClick={() => filterByType("bloodGroup")}>ABO</th>
+                        <th className="thPatientsList w-[150px]">Imagen</th>
+                        <th className="thPatientsList w-[180px]" onClick={() => filterByType("lastName")}>Apellidos</th>
+                        <th className="thPatientsList w-[180px]" onClick={() => filterByType("firstName")}>Nombre</th>
+                        <th className="thPatientsList w-[120px]" onClick={() => filterByType("age")}>Edad</th>
+                        <th className="thPatientsList w-[150px]" onClick={() => filterByType("gender")}>Gender</th>
+                        <th className="thPatientsList w-[120px]" onClick={() => filterByType("bloodGroup")}>ABO</th>
                         <th className="thPatientsList">Email</th>
                     </tr>
                 </thead>
                 <tbody className="">
                     {list.map((patient) => (
-                        <tr key={patient.id} className="hover:bg-blue-50 hover:cursor-pointer">
-                            <td className="justify-center flex p-2 border-y-[0.5px] border-blue-200">
+                        <tr key={patient.id} className="tBodyTr">
+                            <td className="tdPatientsList justify-center p-2">
                                 <Image
                                     src={`${patient.image}`}
-                                    width={80}
-                                    height={80}
+                                    width={70}
+                                    height={70}
                                     alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
                                     className="rounded-full border-[1px] border-blue-300"
                                 />

@@ -1,5 +1,9 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Logo from "./components/Logo";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,6 +19,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SenseBeam",
   description: "SenseBeam",
+  icons: {
+    icon: '/logo/favicon-32x32.png',
+  },
+  alternates: {
+    languages: {
+      'es-ES': '/es-ES'
+    },
+  },
 };
 
 export default function RootLayout({
@@ -24,15 +36,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="h-[10svh] flex justify-center items-center">
-          <h1>SENSEBEAM</h1>
+          <div className="logo-container flex justify-center">
+            <Link href={"/"}>
+              <Logo />
+            </Link>
+          </div>
         </div>
         <div className="h-[90svh] px-10">
           <div className="h-[85svh] bg-white border-[1px] border-blue-200 rounded-2xl">
-              {children}
+            {children}
           </div>
         </div>
       </body>

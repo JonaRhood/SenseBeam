@@ -1,31 +1,61 @@
 // app/components/SearchPatients.tsx
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PatientsList from "./PatientsList"
+import SearchIcon from "./icons/SearchIcon";
+import XIcon from "./icons/XIcon";
 
 export default function SearchPatients() {
-    const [ searchText, setSearchText ] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const [iconXOn, setIconXOn] = useState<boolean>(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const inputSearch = (e : any) => {
-        if (e.key == "Enter") {
+    const inputSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        const value = (e.target as HTMLInputElement).value;
+        if (e.key === "Enter") {
             e.preventDefault();
-            setSearchText(e.target.value);
-        } else if (e.key == "Backspace" && e.target.value.length <= 1) {
-            setSearchText(e.target.value);
+            setSearchText(value);
+            return;
+        }
+        if (e.key === "Backspace" && value.length <= 1) {
+            setIconXOn(false);
+        } else {
+            setIconXOn(true);
         }
     }
 
+    const handleXIcon = () => {
+        if (inputRef.current) {
+            inputRef.current.value = "";
+        }
+        setSearchText("")
+        setIconXOn(false);
+    }
+
     return (
-    <div className="flex flex-col h-full">
-      <div className="flex justify-center h-[8svh] items-center">
-        <input 
-            className="border-[1px] border-blue-300 rounded-full w-[45%] px-4 p-1"
-            onKeyDown={(e) => inputSearch(e)}
-        ></input>
-      </div>
-      <div className="flex justify-center overflow-hidden overflow-y-scroll overflow-x-auto">
-        <PatientsList searchText={searchText} />
-      </div>
-    </div>
+        <div className="flex flex-col h-full">
+            <div className="flex justify-center h-[8svh] items-center relative">
+                <div className="flex h-full absolute p-[18px] -translate-x-[295px]">
+                    <SearchIcon onClick={() => inputRef.current?.focus()} />
+                </div>
+                <input
+                    ref={inputRef}
+                    className="border-[1px] border-blue-300 rounded-full w-[650px] px-4 pl-[50px] p-1"
+                    placeholder="Search by first or last name"
+                    onKeyDown={(e) => inputSearch(e)}
+                ></input>
+                <div className="flex h-full absolute p-[22px] translate-x-[295px]">
+                    <div 
+                        className="xIcon flex w-[20px]"
+                        onClick={() => handleXIcon()}
+                    >
+                        {iconXOn ? <XIcon /> : ""}
+                    </div>
+                </div>
+            </div>
+            <div className="flex h-[92svh] justify-center overflow-hidden overflow-y-scroll overflow-x-auto">
+                <PatientsList searchText={searchText} />
+            </div>
+        </div>
     )
 }

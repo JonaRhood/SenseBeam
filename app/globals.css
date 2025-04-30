@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: linear-gradient(to top left, 
-  #9de0ff 10%,
-  #beeaff 30%,
-  #ffffff 90% 
-);
+  --background: linear-gradient(to top left,
+      #9de0ff 10%,
+      #beeaff 30%,
+      #ffffff 90%);
 
   --foreground: #171717;
 }
@@ -32,6 +31,44 @@ body {
   overflow: hidden;
 }
 
+/* LOGO */
+.logo-container svg path:nth-child(8) {
+  fill: rgb(0, 35, 46);
+  transition: fill 1s ease-in-out;
+  -webkit-transition: fill 1s ease-in-out;
+  -moz-transition: fill 1s ease-in-out;
+  -ms-transition: fill 1s ease-in-out;
+  -o-transition: fill 1s ease-in-out;
+}
+
+.logo-container:hover svg path:nth-child(8) {
+  fill: rgb(0, 97, 127);
+  transition: fill 0.3s ease-in-out;
+  -webkit-transition: fill 0.3s ease-in-out;
+  -moz-transition: fill 0.3s ease-in-out;
+  -ms-transition: fill 0.3s ease-in-out;
+  -o-transition: fill 0.3s ease-in-out;
+}
+
+.logo-container svg linearGradient stop:nth-child(1) {
+  transition: stop-color 1s ease-in-out;
+  -webkit-transition: stop-color 1s ease-in-out;
+  -moz-transition: stop-color 1s ease-in-out;
+  -ms-transition: stop-color 1s ease-in-out;
+  -o-transition: stop-color 1s ease-in-out;
+}
+
+.logo-container:hover svg linearGradient stop:nth-child(1) {
+  stop-color: rgb(0, 195, 255);
+  transition: stop-color 0.3s ease-in-out;
+  -webkit-transition: stop-color 0.3s ease-in-out;
+  -moz-transition: stop-color 0.3s ease-in-out;
+  -ms-transition: stop-color 0.3s ease-in-out;
+  -o-transition: stop-color 0.3s ease-in-out;
+}
+
+/* LIST */
+
 .unselectedTab {
   background-color: #cde2ff;
   border-bottom: 1px solid #bfdbff;
@@ -56,17 +93,82 @@ body {
 }
 
 .thPatientsList {
-  background-color: #dbeafe;
+  background-color: #dbf0fe;
   padding: 5px;
+  transition: background-color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out;
+  -ms-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
 }
 
 .thPatientsList:hover {
-  background-color: #b4d5ff;
+  background-color: #b4e0ff;
   cursor: pointer;
+  transition: background-color 0.01s ease-in-out;
+  -webkit-transition: background-color 0.01s ease-in-out;
+  -moz-transition: background-color 0.01s ease-in-out;
+  -ms-transition: background-color 0.01s ease-in-out;
+  -o-transition: background-color 0.01s ease-in-out;
+}
+
+.tBodyTr {
+  transition: background-color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out;
+  -ms-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
+}
+
+.tBodyTr:hover {
+  cursor: pointer;
+  background-color: #f2faff;
+  transition: background-color 0.01s ease-in-out;
+  -webkit-transition: background-color 0.01s ease-in-out;
+  -moz-transition: background-color 0.01s ease-in-out;
+  -ms-transition: background-color 0.01s ease-in-out;
+  -o-transition: background-color 0.01s ease-in-out;
 }
 
 .tdPatientsList {
   border: 1px solid rgb(189, 226, 255);
   padding: 5px;
   text-align: center;
+}
+
+/* ICONS */
+
+.xIcon:hover {
+  cursor: pointer;
+}
+
+.xIcon:hover path {
+  stroke: rgb(225, 0, 0);
+}
+
+/* SCROLLBAR */
+/* WebKit: Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #607c96;
+  border-radius: 6px;
+  border: 3px solid #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4b657e;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;     
+  scrollbar-color: #ffffff #dbf0fe;
 }
