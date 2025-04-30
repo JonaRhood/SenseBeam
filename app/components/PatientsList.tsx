@@ -1,9 +1,17 @@
 // app/components/PatientsList.tsx
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation";
+import Modal from 'react-modal';
+import Patient from "../pacientes/[patient]/page";
+import { useAppDispatch } from "@/lib/hooks";
+import { setIsModalOpen } from "@/lib/features/todos/modalSlice";
+
 
 interface PatientsListProps {
     searchText: string;
+    onPatientSelect: (id: string) => void;
+    openModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Patient {
@@ -17,10 +25,13 @@ interface Patient {
     email: string,
 }
 
-export default function PatientsList({ searchText }: PatientsListProps) {
+export default function PatientsList({ searchText, onPatientSelect, openModal }: PatientsListProps) {
 
     const [fullList, setFullList] = useState<Patient[]>([]);
     const [list, setList] = useState<Patient[]>([]);
+    const dispatch = useAppDispatch();
+
+    const router = useRouter();
 
     useEffect(() => {
         const fetchPatients = async () => {
@@ -35,6 +46,10 @@ export default function PatientsList({ searchText }: PatientsListProps) {
         }
 
         fetchPatients();
+
+        if (typeof window !== 'undefined') {
+            Modal.setAppElement(document.body); // o document.getElementById('your-root-id')
+        }
     }, []);
 
     useEffect(() => {
@@ -66,11 +81,16 @@ export default function PatientsList({ searchText }: PatientsListProps) {
         setFilter(filter === "ASC" ? "DESC" : "ASC");
     };
 
+    const handlePatientClick = (patientId: number) => {
+        onPatientSelect(patientId.toString());
+        router.push(`?pacientes=${patientId}`)
+        dispatch(setIsModalOpen(true));
+    }
 
     return (
         <div className="flex w-full h-[0px]">
             <table className="w-full rounded-md">
-                <thead className="bg-blue-100 sticky top-0 z-10 w-full">
+                <thead className="sticky top-0 z-10 w-full">
                     <tr>
                         <th className="thPatientsList w-[150px]">Imagen</th>
                         <th className="thPatientsList w-[180px]" onClick={() => filterByType("lastName")}>Apellidos</th>
@@ -83,15 +103,21 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                 </thead>
                 <tbody className="">
                     {list.map((patient) => (
-                        <tr key={patient.id} className="tBodyTr">
-                            <td className="tdPatientsList justify-center p-2">
-                                <Image
-                                    src={`${patient.image}`}
-                                    width={70}
-                                    height={70}
-                                    alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
-                                    className="rounded-full border-[1px] border-blue-300"
-                                />
+                        <tr
+                            key={patient.id}
+                            className="tBodyTr"
+                            onClick={() => handlePatientClick(patient.id)}
+                        >
+                            <td className="tdPatientsList">
+                                <div className="flex justify-center">
+                                    <Image
+                                        src={`${patient.image}`}
+                                        width={70}
+                                        height={70}
+                                        alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
+                                        className="rounded-full border-[1px] border-blue-300"
+                                    />
+                                </div>
                             </td>
                             <td className="tdPatientsList">{patient.lastName}</td>
                             <td className="tdPatientsList">{patient.firstName}</td>

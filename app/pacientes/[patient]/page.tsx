@@ -2,28 +2,36 @@
 
 import Link from "next/link"
 import Telemetry from "./components/Telemetry"
+import { useAppDispatch } from "@/lib/hooks"
+import { setIsModalOpen } from "@/lib/features/todos/modalSlice"
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ patient: string }>
+
+export default function Patient({ 
+  patient,
+  closeModal,
+}: { 
+  patient: string,
+  closeModal?: React.Dispatch<React.SetStateAction<boolean>>
 }) {
 
-  const { patient } = await params
+    const dispatch = useAppDispatch();
 
   return (
     <div>
-      <div className="flex">
-        <div className="w-[48%] flex justify-center">
-          TAB 1
+      <div className="flex h-[30px]">
+        <div className="w-[48%] flex justify-center items-center">
+          Sensor Data Overview
         </div>
-        <div className="w-[48%] flex justify-center unselectedTab">
-          TAB 2
+        <div className="w-[48%] flex justify-center items-center unselectedTab">
+          Sensor Data Chart
         </div>
-        <div className="w-[4%] flex justify-center closeTab">
-          <Link href={"/"}>
+        <div className="w-[4%] flex justify-center items-center closeTab">
+          <div
+            className="flex items-center w-full h-full justify-center"
+            onClick={() => dispatch(setIsModalOpen(false))}
+          >
             X
-          </Link>
+          </div>
         </div>
       </div>
       My Post: {patient}

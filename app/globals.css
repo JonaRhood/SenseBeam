@@ -70,14 +70,24 @@ body {
 /* LIST */
 
 .unselectedTab {
-  background-color: #cde2ff;
+  background-color: #c6e8ff;
   border-bottom: 1px solid #bfdbff;
   border-left: 1px solid #bfdbff;
+  transition: background-color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out;
+  -ms-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
 }
 
 .unselectedTab:hover {
   cursor: pointer;
-  background-color: #d8e8fe;
+  background-color: #d9efff;
+  transition: background-color 0.01s ease-in-out;
+  -webkit-transition: background-color 0.01s ease-in-out;
+  -moz-transition: background-color 0.01s ease-in-out;
+  -ms-transition: background-color 0.01s ease-in-out;
+  -o-transition: background-color 0.01s ease-in-out;
 }
 
 .closeTab {
@@ -85,11 +95,21 @@ body {
   border-bottom: 1px solid #bfdbff;
   border-left: 1px solid #bfdbff;
   border-top-right-radius: .9rem;
+  transition: background-color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out;
+  -ms-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
 }
 
 .closeTab:hover {
   cursor: pointer;
-  background-color: #ff9b9b;
+  background-color: #ffb4b4;
+  transition: background-color 0.01s ease-in-out;
+  -webkit-transition: background-color 0.01s ease-in-out;
+  -moz-transition: background-color 0.01s ease-in-out;
+  -ms-transition: background-color 0.01s ease-in-out;
+  -o-transition: background-color 0.01s ease-in-out;
 }
 
 .thPatientsList {
@@ -131,7 +151,7 @@ body {
 }
 
 .tdPatientsList {
-  border: 1px solid rgb(189, 226, 255);
+  border: 1px solid #bde2ff;
   padding: 5px;
   text-align: center;
 }
@@ -171,4 +191,16 @@ body {
 * {
   scrollbar-width: thin;     
   scrollbar-color: #ffffff #dbf0fe;
+}
+
+
+/* MODAL */
+.modalPatient {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  width: 100%;
+  height: 100%;
 }

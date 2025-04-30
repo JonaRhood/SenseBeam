@@ -1,0 +1,24 @@
+// app/components/Modal.tsx
+
+import Patient from "../pacientes/[patient]/page"
+import { useState, useEffect } from "react";
+import { useAppSelector } from "@/lib/hooks";
+import { RootState } from "@/lib/store";
+
+interface ModalProps {
+    pacient: string;
+    openModal: boolean;
+}
+
+export default function Modal({ pacient, openModal }: ModalProps) {
+    
+    const modalIsOpen = useAppSelector((state: RootState) => state.modal.isModalOpen);
+    
+    return (
+        <div className={`modalPatient ${modalIsOpen ? "" : "hidden"}`}>
+            <div className="contentModalPatient">
+                <Patient patient={pacient} />
+            </div>
+        </div>
+    )
+}
