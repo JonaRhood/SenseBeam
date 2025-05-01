@@ -30,7 +30,7 @@ export default function Modal({ pacient }: ModalProps) {
     
     return (
         <div className={`modalPatient ${modalIsOpen ? "" : "hidden"}`}>
-            <div className="contentModalPatient">
+            <div className="h-full">
                 <Patient />
             </div>
         </div>

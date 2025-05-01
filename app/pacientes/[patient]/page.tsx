@@ -21,15 +21,15 @@ export default function Patient() {
   }, [])
   
   return (
-    <div>
+    <div className='flex h-full flex-col'>
       <div>
         <Tabs />
       </div>
-      <div>
-        <div>
+      <div className='flex h-full p-10 gap-10'>
+        <div className='flex w-[30%]'>
           <PatientProfile />
         </div>
-        <div>
+        <div className='flex w-[70%] border-2 border-blue-500'>
           <DataOverviewTab />
         </div>
       </div>

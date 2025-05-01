@@ -6,9 +6,7 @@ import Modal from 'react-modal';
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch } from "@/store/hooks";
 import { setIsModalOpen } from "@/store/slices/modalSlice";
-import { setPatient } from "@/store/slices/patientSlice";
-import { createCookie } from "@/utils/utils";
-import { create } from "domain";
+import { setPatientId, setPatientData } from "@/store/slices/patientSlice";
 
 
 interface PatientsListProps {
@@ -46,6 +44,7 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
             console.log(result.users)
             setList(result.users);
             setFullList(result.users);
+            dispatch(setPatientData(result.users))
         }
 
         fetchPatients();
@@ -84,11 +83,12 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
         setFilter(filter === "ASC" ? "DESC" : "ASC");
     };
 
-    const handlePatientClick = (patientId: number) => {
-        onPatientSelect(patientId.toString());
-        window.history.pushState(null, '', `/pacientes/${patientId}`)
+    const handlePatientClick = (patient: any) => {
+        onPatientSelect(patient.id.toString());
+        window.history.pushState(null, '', `/pacientes/${patient.id}`)
         dispatch(setIsModalOpen(true));
-        dispatch(setPatient(patientId))
+        dispatch(setPatientId(patient.id))
+        // dispatch(setPatientData(patient));
     }
 
     return (
@@ -106,11 +106,12 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
                     </tr>
                 </thead>
                 <tbody className="">
-                    {list.map((patient) => (
+                    {list.map((patient, idx) => (
                         <tr
+                            id={`${patient.id}`}
                             key={patient.id}
                             className="tBodyTr"
-                            onClick={() => handlePatientClick(patient.id)}
+                            onClick={() => handlePatientClick(patient)}
                         >
                             <td className="tdPatientsList">
                                 <div className="flex justify-center">
