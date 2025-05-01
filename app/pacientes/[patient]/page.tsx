@@ -1,36 +1,37 @@
-// app/pacientes/[patients]/page.tsx
-"use client";
 
-import Telemetry from "./components/Telemetry"
-import { useAppDispatch } from "@/lib/hooks"
-import { setIsModalOpen } from "@/lib/features/todos/modalSlice"
+"use client"
 
+import Tabs from './components/Tabs'
+import PatientProfile from './components/PatientProfile'
+import DataOverviewTab from './components/DataOverViewTab'
+import { useSearchParams, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { Suspense } from 'react'
+ 
+export default function Patient() {
+  const searchParams = useSearchParams();
+  const patientParam = searchParams.get('pacientes');
+  const router = useRouter()
 
-export default function Patient({ params }: any) {
-
-    const dispatch = useAppDispatch();
-
+  // If direct URL, redirects to /pacfientes/[patient]
+  useEffect(() => {
+    if (patientParam) {
+      router.push(`/pacientes/${patientParam}`)
+    }
+  }, [])
+  
   return (
     <div>
-      <div className="flex h-[30px]">
-        <div className="w-[48%] flex justify-center items-center">
-          Sensor Data Overview
-        </div>
-        <div className="w-[48%] flex justify-center items-center unselectedTab">
-          Sensor Data Chart
-        </div>
-        <div className="w-[4%] flex justify-center items-center closeTab">
-          <div
-            className="flex items-center w-full h-full justify-center"
-            onClick={() => dispatch(setIsModalOpen(false))}
-          >
-            X
-          </div>
-        </div>
-      </div>
-      My Post:
       <div>
-        <Telemetry />
+        <Tabs />
+      </div>
+      <div>
+        <div>
+          <PatientProfile />
+        </div>
+        <div>
+          <DataOverviewTab />
+        </div>
       </div>
     </div>
   )

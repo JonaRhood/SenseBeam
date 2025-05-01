@@ -2,8 +2,10 @@
 
 import Patient from "../pacientes/[patient]/page"
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/lib/hooks";
-import { RootState } from "@/lib/store";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { setIsModalOpen } from "@/store/slices/modalSlice";
+import { RootState } from "@/store/store";
+import { usePathname } from "next/navigation";
 
 interface ModalProps {
     pacient: string;
@@ -12,6 +14,19 @@ interface ModalProps {
 export default function Modal({ pacient }: ModalProps) {
     
     const modalIsOpen = useAppSelector((state: RootState) => state.modal.isModalOpen);
+    const dispatch = useAppDispatch();
+    const path = usePathname();
+    const isPacientesRoute = path.startsWith('/pacientes/');
+    
+    useEffect(() => {
+        console.log(modalIsOpen)
+        console.log(isPacientesRoute)
+        if (modalIsOpen && !isPacientesRoute) {
+            dispatch(setIsModalOpen(false));
+        } else if (isPacientesRoute) {
+            dispatch(setIsModalOpen(true))
+        }
+    }, [path])
     
     return (
         <div className={`modalPatient ${modalIsOpen ? "" : "hidden"}`}>

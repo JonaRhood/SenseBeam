@@ -4,8 +4,11 @@ import Image from "next/image"
 import { useRouter } from "next/navigation";
 import Modal from 'react-modal';
 import Patient from "../pacientes/[patient]/page";
-import { useAppDispatch } from "@/lib/hooks";
-import { setIsModalOpen } from "@/lib/features/todos/modalSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { setIsModalOpen } from "@/store/slices/modalSlice";
+import { setPatient } from "@/store/slices/patientSlice";
+import { createCookie } from "@/utils/utils";
+import { create } from "domain";
 
 
 interface PatientsListProps {
@@ -83,8 +86,9 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
 
     const handlePatientClick = (patientId: number) => {
         onPatientSelect(patientId.toString());
-        router.push(`?pacientes=${patientId}`)
+        window.history.pushState(null, '', `/pacientes/${patientId}`)
         dispatch(setIsModalOpen(true));
+        dispatch(setPatient(patientId))
     }
 
     return (
