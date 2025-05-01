@@ -18,11 +18,11 @@ export default function PatientProfile() {
     const dispatch = useAppDispatch()
 
 
-    useEffect(() => {
-        const searchPatient = patientData.find((p: any) => p.id === patientId)
-        setPatientSelected(searchPatient);
-        console.log(patientSelected)
-    }, [patientId])
+    // useEffect(() => {
+    //     const searchPatient = patientData.find((p: any) => p.id === patientId)
+    //     setPatientSelected(searchPatient);
+    //     console.log(patientSelected)
+    // }, [patientData])
 
 
     useEffect(() => {

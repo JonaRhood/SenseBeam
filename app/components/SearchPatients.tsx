@@ -59,7 +59,7 @@ export default function SearchPatients() {
             <div className="flex h-[92svh] justify-center overflow-hidden overflow-y-scroll overflow-x-auto">
                 <PatientsList searchText={searchText} onPatientSelect={setSelectedPatient} openModal={setOpenModal} />
             </div>
-            <Modal pacient={selectedPatient} />
+            <Modal />
         </div>
     )
 }

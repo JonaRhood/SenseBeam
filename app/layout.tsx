@@ -1,11 +1,13 @@
+
 // app/layout.tsx
 
-import StoreProvider from "./StoreProvider";
+import { StoreProvider } from "./StoreProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Logo from "./components/Logo";
 import Link from "next/link";
 import "./globals.css";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,13 +32,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const cookieStore = await cookies();
+  const patientTab = Number(cookieStore.get("patientTab")?.value);
+  console.log(patientTab)
+
+  const initialReduxState = {
+    patient: {
+      patientTab,
+    }
+  };
+
   return (
-    <StoreProvider>
+    <StoreProvider initialState={initialReduxState}>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

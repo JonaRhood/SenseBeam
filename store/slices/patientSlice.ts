@@ -5,12 +5,14 @@ interface GalleryState {
   patientId: number | undefined,
   patientIdx: number | undefined,
   patientData: any,
+  patientTab: number,
 }
 
 const initialState: GalleryState = {
   patientId: undefined,
   patientIdx: undefined,
-  patientData: []
+  patientData: [],
+  patientTab: 1
 };
 
 export const patientSlice = createSlice({
@@ -25,12 +27,15 @@ export const patientSlice = createSlice({
     },
     setPatientData(state, action: PayloadAction<any>) {
       state.patientData = action.payload;
+    },
+    setPatientTab(state, action: PayloadAction<number>) {
+      state.patientTab = action.payload;
     }
   }
 });
 
 export const {
-  setPatientId, setPatientIdx, setPatientData
+  setPatientId, setPatientIdx, setPatientData, setPatientTab
 } = patientSlice.actions;
 export default patientSlice.reducer;
 

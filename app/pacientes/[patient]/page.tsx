@@ -6,8 +6,8 @@ import PatientProfile from './components/PatientProfile'
 import DataOverviewTab from './components/DataOverViewTab'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { Suspense } from 'react'
- 
+import PatientModal from './components/PatientModal'
+
 export default function Patient() {
   const searchParams = useSearchParams();
   const patientParam = searchParams.get('pacientes');
@@ -19,7 +19,7 @@ export default function Patient() {
       router.push(`/pacientes/${patientParam}`)
     }
   }, [])
-  
+
   return (
     <div className='flex h-full flex-col'>
       <div>
@@ -29,8 +29,9 @@ export default function Patient() {
         <div className='flex w-[30%]'>
           <PatientProfile />
         </div>
-        <div className='flex w-[70%] border-2 border-blue-500'>
+        <div className='flex w-[70%] border-2 border-blue-500 relative'>
           <DataOverviewTab />
+          <PatientModal />
         </div>
       </div>
     </div>

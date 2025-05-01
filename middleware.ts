@@ -1,22 +1,40 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-    
-    // const url = request.nextUrl.clone()
-    // const pacientId = url.searchParams.get('pacientes')
+    const pathname = request.nextUrl.pathname;
 
-    // let cookie = request.cookies.get('isModalOpen')
+    const match = pathname.match(/^\/pacientes\/(\d+)/);
+    const datachartPath = pathname.includes("datachart");
 
-    // if (pacientId && cookie?.value == "false") {
-    //     return NextResponse.redirect(new URL(`/pacientes/${pacientId}`, request.url))
-    // } else {
-    //     console.log(false)
+    if (datachartPath) {
+        console.log("HOLA");
+
+        const res = NextResponse.next();
+        res.cookies.set("patientTab", "2", {
+            path: "/",
+            maxAge: 3600,
+        });
+
+        return res;
+    }
+
+    // if (match) {
+    //     const patientId = match[1];
+    //     console.log(`Paciente ID: ${patientId}`);
+
+    //     const res = NextResponse.next();
+    //     res.cookies.set("patientId", patientId, {
+    //         path: "/",
+    //         maxAge: 3600,
+    //     });
+
+    //     return res;
     // }
+
+    return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-    matcher: '/',
-}
+    matcher: '/:path*',
+};

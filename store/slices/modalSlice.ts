@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface GalleryState {
   isModalOpen: boolean,
+  isPacientModalOpen: boolean,
 }
 
 const initialState: GalleryState = {
-  isModalOpen: false
+  isModalOpen: false,
+  isPacientModalOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -16,11 +18,14 @@ export const modalSlice = createSlice({
     setIsModalOpen(state, action: PayloadAction<boolean>) {
       state.isModalOpen = action.payload;
     },
+    setIsPacientModalOpen(state, action: PayloadAction<boolean>) {
+      state.isPacientModalOpen = action.payload;
+    },
   }
 });
 
 export const {
-  setIsModalOpen,
+  setIsModalOpen, setIsPacientModalOpen
 } = modalSlice.actions;
 export default modalSlice.reducer;
 

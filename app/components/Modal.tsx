@@ -7,11 +7,7 @@ import { setIsModalOpen } from "@/store/slices/modalSlice";
 import { RootState } from "@/store/store";
 import { usePathname } from "next/navigation";
 
-interface ModalProps {
-    pacient: string;
-}
-
-export default function Modal({ pacient }: ModalProps) {
+export default function Modal() {
     
     const modalIsOpen = useAppSelector((state: RootState) => state.modal.isModalOpen);
     const dispatch = useAppDispatch();
