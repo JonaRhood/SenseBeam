@@ -9,7 +9,7 @@ export default function PatientPage() {
       <div className='flex w-[30%]'>
         <PatientProfile />
       </div>
-      <div className='flex w-[70%] border-2 border-blue-500 relative'>
+      <div className='flex w-[70%] border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg'>
         <DataOverview />
       </div>
     </div>

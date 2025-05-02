@@ -192,15 +192,3 @@ body {
   scrollbar-width: thin;     
   scrollbar-color: #ffffff #dbf0fe;
 }
-
-
-/* MODAL */
-.modalPatient {
-  position: absolute;
-  z-index: 1000;
-  background-color: white;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
-  width: 100%;
-  height: 100%;
-}

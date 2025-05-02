@@ -125,6 +125,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                             key={patient.id}
                             className="tBodyTr"
                             onClick={() => handlePatientClick(patient)}
+                            onMouseOver={() => router.prefetch(`pacientes/${patient.id}`)}
                         >
                             <td className="tdPatientsList">
                                 <div className="flex justify-center">

@@ -7,6 +7,7 @@ interface GalleryState {
   patientData: any,
   patientDataFullList: any,
   selectedPatient: any,
+  selectedPatientTelemetry: any,
 }
 
 const initialState: GalleryState = {
@@ -15,6 +16,7 @@ const initialState: GalleryState = {
   patientData: [],
   patientDataFullList: [],
   selectedPatient: [],
+  selectedPatientTelemetry: [],
 };
 
 export const patientSlice = createSlice({
@@ -36,11 +38,15 @@ export const patientSlice = createSlice({
     setSelectedPatient(state, action: PayloadAction<any>) {
       state.selectedPatient = action.payload;
     },
+    setSelectedPatientTelemetry(state, action: PayloadAction<any>) {
+      state.selectedPatientTelemetry = action.payload;
+    },
   }
 });
 
 export const {
-  setPatientId, setScrollPatientsList, setPatientData, setPatientDataFullList, setSelectedPatient
+  setPatientId, setScrollPatientsList, setPatientData, 
+  setPatientDataFullList, setSelectedPatient, setSelectedPatientTelemetry
 } = patientSlice.actions;
 export default patientSlice.reducer;
 
