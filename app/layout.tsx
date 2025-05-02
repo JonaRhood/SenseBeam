@@ -39,8 +39,8 @@ export default async function RootLayout({
 }>) {
 
   const cookieStore = await cookies();
-  const patientTab = Number(cookieStore.get("patientTab")?.value);
-  console.log(patientTab)
+  const raw = cookieStore.get("patientTab")?.value ?? "1";
+  const patientTab = Number(raw);
 
   const initialReduxState = {
     patient: {

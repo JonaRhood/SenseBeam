@@ -1,11 +1,10 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
-import { modalSlice } from "./slices/modalSlice";
 import { patientSlice } from "./slices/patientSlice";
 
 // `combineSlices` automáticamente combina los reductores usando
 // sus `reducerPath`, por lo que ya no necesitamos llamar a `combineReducers`.
-const rootReducer = combineSlices(modalSlice, patientSlice);
+const rootReducer = combineSlices(patientSlice);
 
 // Inferimos el tipo `RootState` a partir del `rootReducer`
 export type RootState = ReturnType<typeof rootReducer>;

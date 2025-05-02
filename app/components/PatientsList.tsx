@@ -1,18 +1,17 @@
 // app/components/PatientsList.tsx
-import { useEffect, useState } from "react"
+"use client"
+
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation";
-import Modal from 'react-modal';
 import Patient from "../pacientes/[patient]/page";
-import { useAppDispatch } from "@/store/hooks";
-import { setIsModalOpen } from "@/store/slices/modalSlice";
-import { setPatientId, setPatientData } from "@/store/slices/patientSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
+import { setPatientId, setPatientData, setScrollPatientsList, setPatientDataFullList, setSelectedPatient } from "@/store/slices/patientSlice";
 
 
 interface PatientsListProps {
     searchText: string;
-    onPatientSelect: (id: string) => void;
-    openModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Patient {
@@ -26,47 +25,53 @@ interface Patient {
     email: string,
 }
 
-export default function PatientsList({ searchText, onPatientSelect }: PatientsListProps) {
+export default function PatientsList({ searchText }: PatientsListProps) {
 
-    const [fullList, setFullList] = useState<Patient[]>([]);
-    const [list, setList] = useState<Patient[]>([]);
+    const patientData = useAppSelector((state: RootState) => state.patient.patientData);
+    const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
+    const scrollPatientsList = useAppSelector((state: RootState) => state.patient.scrollPatientsList);
     const dispatch = useAppDispatch();
+    const divRef = useRef<HTMLDivElement>(null);
 
     const router = useRouter();
-
+    
+    // Data Fetch Logic
     useEffect(() => {
+        if (patientDataFullList && patientDataFullList.length > 0) return;
         const fetchPatients = async () => {
             const dataPatients = await fetch('https://dummyjson.com/users');
             const result = await dataPatients.json();
-
+            
             result.users.sort((a: Patient, b: Patient) => a.lastName.localeCompare(b.lastName));
-
+            
             console.log(result.users)
-            setList(result.users);
-            setFullList(result.users);
             dispatch(setPatientData(result.users))
+            dispatch(setPatientDataFullList(result.users))
         }
-
         fetchPatients();
-
-        if (typeof window !== 'undefined') {
-            Modal.setAppElement(document.body); // o document.getElementById('your-root-id')
-        }
     }, []);
+    
+    // Scroll State Logic
+    useEffect(() => {
+        if (divRef.current) {
+            divRef.current.scrollTop = scrollPatientsList
+        }
+    }, [divRef])
 
     useEffect(() => {
-        const inputSearch = fullList.filter((patient) => {
+        if (searchText === "]") return;
+        const inputSearch = patientDataFullList?.filter((patient: any) => {
             const fullName = `${patient.firstName} ${patient.lastName}`.toLowerCase();
             return fullName.includes(searchText.toLowerCase());
         });
-        setList(inputSearch);
-    }, [searchText, fullList]);
+        dispatch(setPatientData(inputSearch));
+    }, [searchText]);
 
 
     const [filter, setFilter] = useState<string>("ASC");
 
     const filterByType = (type: keyof Patient) => {
-        const sortedList = [...list].sort((a, b) => {
+        const sortedList = [...patientData].sort((a, b) => {
             const aValue = a[type];
             const bValue = b[type];
 
@@ -79,21 +84,29 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
                 : String(bValue).localeCompare(String(aValue));
         });
 
-        setList(sortedList);
+        dispatch(setPatientData(sortedList));
         setFilter(filter === "ASC" ? "DESC" : "ASC");
     };
 
     const handlePatientClick = (patient: any) => {
-        onPatientSelect(patient.id.toString());
-        window.history.pushState(null, '', `/pacientes/${patient.id}`)
-        dispatch(setIsModalOpen(true));
+        dispatch(setSelectedPatient(patient))
+        if (divRef.current) {
+            dispatch(setScrollPatientsList(divRef.current.scrollTop));
+        }
+        router.push(`/pacientes/${patient.id}`, { scroll: true })
         dispatch(setPatientId(patient.id))
-        // dispatch(setPatientData(patient));
+    }
+
+    if (!patientData) {
+        return <div>loading</div>
     }
 
     return (
-        <div className="flex w-full h-[0px]">
-            <table className="w-full rounded-md">
+        <div
+            className="flex w-full h-full overflow-hidden overflow-y-scroll overflow-x-auto "
+            ref={divRef}
+        >
+            <table className="w-full rounded-md h-[0px]">
                 <thead className="sticky top-0 z-10 w-full">
                     <tr>
                         <th className="thPatientsList w-[150px]">Imagen</th>
@@ -106,7 +119,7 @@ export default function PatientsList({ searchText, onPatientSelect }: PatientsLi
                     </tr>
                 </thead>
                 <tbody className="">
-                    {list.map((patient, idx) => (
+                    {patientData?.map((patient: any) => (
                         <tr
                             id={`${patient.id}`}
                             key={patient.id}

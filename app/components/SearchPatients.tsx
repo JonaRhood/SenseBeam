@@ -4,14 +4,11 @@ import { useState, useRef } from "react";
 import PatientsList from "./PatientsList"
 import SearchIcon from "./icons/SearchIcon";
 import XIcon from "./icons/XIcon";
-import Modal from "./Modal";
 
 export default function SearchPatients() {
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState<string>("]");
     const [iconXOn, setIconXOn] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [openModal, setOpenModal] = useState<boolean>(false);
-    const [selectedPatient, setSelectedPatient] = useState<string>("");
 
     const inputSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value;
@@ -48,7 +45,7 @@ export default function SearchPatients() {
                     onKeyDown={(e) => inputSearch(e)}
                 ></input>
                 <div className="flex h-full absolute p-[22px] translate-x-[295px]">
-                    <div 
+                    <div
                         className="xIcon flex w-[20px]"
                         onClick={() => handleXIcon()}
                     >
@@ -56,10 +53,9 @@ export default function SearchPatients() {
                     </div>
                 </div>
             </div>
-            <div className="flex h-[92svh] justify-center overflow-hidden overflow-y-scroll overflow-x-auto">
-                <PatientsList searchText={searchText} onPatientSelect={setSelectedPatient} openModal={setOpenModal} />
+            <div className="flex h-[92svh] justify-center overflow-hidden">
+                <PatientsList searchText={searchText} />
             </div>
-            <Modal />
         </div>
     )
 }

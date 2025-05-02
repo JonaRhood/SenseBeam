@@ -1,4 +1,4 @@
-export default function DataChartTab() {
+export default function DataChart() {
     return (
         <div>
             DATACHART

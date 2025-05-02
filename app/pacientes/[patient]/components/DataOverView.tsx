@@ -1,4 +1,4 @@
-export default function DataOverviewTab() {
+export default function DataOverview() {
     return (
         <div>
             DATAOVERVIEW

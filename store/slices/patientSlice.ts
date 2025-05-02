@@ -3,16 +3,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface GalleryState {
   patientId: number | undefined,
-  patientIdx: number | undefined,
+  scrollPatientsList: number,
   patientData: any,
-  patientTab: number,
+  patientDataFullList: any,
+  selectedPatient: any,
 }
 
 const initialState: GalleryState = {
   patientId: undefined,
-  patientIdx: undefined,
+  scrollPatientsList: 0,
   patientData: [],
-  patientTab: 1
+  patientDataFullList: [],
+  selectedPatient: [],
 };
 
 export const patientSlice = createSlice({
@@ -22,20 +24,23 @@ export const patientSlice = createSlice({
     setPatientId(state, action: PayloadAction<number>) {
       state.patientId = action.payload;
     },
-    setPatientIdx(state, action: PayloadAction<number>) {
-      state.patientIdx = action.payload;
+    setScrollPatientsList(state, action: PayloadAction<number>) {
+      state.scrollPatientsList = action.payload;
     },
     setPatientData(state, action: PayloadAction<any>) {
       state.patientData = action.payload;
     },
-    setPatientTab(state, action: PayloadAction<number>) {
-      state.patientTab = action.payload;
-    }
+    setPatientDataFullList(state, action: PayloadAction<any>) {
+      state.patientDataFullList = action.payload;
+    },
+    setSelectedPatient(state, action: PayloadAction<any>) {
+      state.selectedPatient = action.payload;
+    },
   }
 });
 
 export const {
-  setPatientId, setPatientIdx, setPatientData, setPatientTab
+  setPatientId, setScrollPatientsList, setPatientData, setPatientDataFullList, setSelectedPatient
 } = patientSlice.actions;
 export default patientSlice.reducer;
 
