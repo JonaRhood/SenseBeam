@@ -8,7 +8,7 @@ export default function DataChart() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
 
     if (!selectedPatientTelemetry) {
-        return <div>Loading patient data...</div>;
+        return <div>Loading patient data..</div>;
     }
 
     return (
