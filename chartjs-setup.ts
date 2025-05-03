@@ -11,6 +11,10 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
+  import StreamingPlugin from '@robloche/chartjs-plugin-streaming';
+  import { Filler } from 'chart.js';
+  import 'chartjs-adapter-date-fns';
+
   
   Chart.register(
     LineController,
@@ -21,5 +25,7 @@ import {
     TimeScale,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    StreamingPlugin,
+    Filler
   );

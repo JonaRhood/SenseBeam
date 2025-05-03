@@ -8,6 +8,8 @@ interface GalleryState {
   patientDataFullList: any,
   selectedPatient: any,
   selectedPatientTelemetry: any,
+  chartHistory: any,
+  chartLabels: string[],
 }
 
 const initialState: GalleryState = {
@@ -17,6 +19,8 @@ const initialState: GalleryState = {
   patientDataFullList: [],
   selectedPatient: [],
   selectedPatientTelemetry: [],
+  chartHistory: [],
+  chartLabels: [],
 };
 
 export const patientSlice = createSlice({
@@ -41,12 +45,26 @@ export const patientSlice = createSlice({
     setSelectedPatientTelemetry(state, action: PayloadAction<any>) {
       state.selectedPatientTelemetry = action.payload;
     },
+    setChartHistory(state, action: PayloadAction<any>) {
+      if (!state.chartHistory) {
+        state.chartHistory = [];
+      }
+      state.chartHistory.push(action.payload);
+    },
+    
+    setChartLabels(state, action: PayloadAction<string>) {
+      if (!state.chartLabels) {
+        state.chartLabels = [];
+      }
+      state.chartLabels.push(action.payload);
+    },
   }
 });
 
 export const {
   setPatientId, setScrollPatientsList, setPatientData, 
-  setPatientDataFullList, setSelectedPatient, setSelectedPatientTelemetry
+  setPatientDataFullList, setSelectedPatient, setSelectedPatientTelemetry,
+  setChartHistory, setChartLabels
 } = patientSlice.actions;
 export default patientSlice.reducer;
 

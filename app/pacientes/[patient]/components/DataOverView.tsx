@@ -47,7 +47,18 @@ export default function DataOverview() {
             </ul>
 
             <p className="text-sm text-gray-500 bg-[#d9efff] p-2 rounded-b-[0.6rem] flex justify-center">
-                <span>Last update: {selectedPatientTelemetry.timestamp}</span>
+                <span>
+                    Last update: {new Date(selectedPatientTelemetry?.timestamp).toLocaleString("es-ES", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false,
+                        timeZone: "Europe/Madrid"
+                    })}
+                </span>
             </p>
         </section>
     )
