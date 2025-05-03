@@ -2,7 +2,7 @@
 
 import { useAppSelector } from "@/store/hooks"
 import { RootState } from "@/store/store"
-import BloodPressureChart from "./BloodPressureChart";
+import BloodChart from "./BloodChart";
 
 export default function DataChart() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
@@ -18,10 +18,10 @@ export default function DataChart() {
             </h2>
             <div className="flex flex-col h-full w-[98%]">
                 <div className="h-[50%]">
-                    <BloodPressureChart type={"systolic"} />
+                    <BloodChart type={"systolic"} />
                 </div>
                 <div className="h-[50%]">
-                    <BloodPressureChart type={"diastolic"} />
+                    <BloodChart type={"diastolic"} />
                 </div>
             </div>
 

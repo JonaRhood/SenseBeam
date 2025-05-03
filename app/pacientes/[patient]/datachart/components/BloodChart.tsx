@@ -6,7 +6,7 @@ import { RootState } from "@/store/store"
 import { Line } from "react-chartjs-2";
 import '@/chartjs-setup'
 
-export default function BloodPressureChart({ type }: { type: string }) {
+export default function BloodChart({ type }: { type: string }) {
     const chartHistory = useAppSelector((state: RootState) => state.patient.chartHistory) ?? [];
     const chartLabels = useAppSelector((state: RootState) => state.patient.chartLabels) ?? [];
 
