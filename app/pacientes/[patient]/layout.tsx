@@ -7,7 +7,7 @@ import { RootState } from "@/store/store";
 import { useParams } from "next/navigation";
 import {
   setSelectedPatientTelemetry, setChartHistory,
-  setChartLabels
+  setChartLabels, setEmptyChartHistory, setEmptyChartLabels
 } from "@/store/slices/patientSlice";
 
 type LayoutProps = {

@@ -36,36 +36,69 @@ export default function PatientProfile() {
     }, [])
 
 
-    if (!selectedPatient) {
-        return <div>Loading patient data...</div>;
-    }
+    // if (!selectedPatient) {
+    //     return <div>Loading patient data...</div>;
+    // }
 
     return (
         <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
-            <div className="divPImage flex aspect-square h-[50%] justify-center mb-2">
-                <Image
-                    src={`${selectedPatient.image}`}
-                    width={300}
-                    height={300}
-                    alt={`Imagen de ${selectedPatient.firstName} ${selectedPatient.lastName}`}
-                    className="patientImage object-contain aspect-square"
-                    priority={true}
-                    loading={"eager"}
-                />
+            <div className="divPImage flex justify-center mb-2">
+                <div className="flex aspect-square justify-center w-56">
+                    <div className="w-full aspect-square relative overflow-hidden border-3 border-blue-300 rounded-full skelTextList">
+                        {selectedPatient &&
+                            <Image
+                                src={`${selectedPatient?.image}`}
+                                fill={true}
+                                alt={`Imagen de ${selectedPatient?.firstName} ${selectedPatient?.lastName}`}
+                                className="object-cover bg-white"
+                                priority={true}
+                                loading={"eager"}
+                            />
+                        }
+                    </div>
+                </div>
             </div>
             <div className="divPPData flex flex-col h-[35%] items-center">
                 <h3 className="font-bold text-[1.5rem] whitespace-nowrap">
-                    {selectedPatient.firstName} {selectedPatient.lastName}, {selectedPatient.age}
+                    {!selectedPatient
+                        ?
+                        <div className="divTitleSkel h-6 w-55 rounded-full skelTextList mb-3 mt-2"></div>
+                        :
+                        <div>
+                            {selectedPatient?.firstName} {selectedPatient?.lastName}, {selectedPatient?.age}
+                        </div>
+                    }
                 </h3>
                 <span className="text-center">
-                    {selectedPatient.phone}
-                    <br />
-                    {selectedPatient.email}
+                    {!selectedPatient
+                        ?
+                        <div className="flex flex-col items-center">
+                            <div className="h-4 mb-1 w-40 rounded-full skelTextList"></div>
+                            <div className="h-4 w-50 rounded-full skelTextList mb-2"></div>
+                        </div>
+                        :
+                        <div>
+                            {selectedPatient?.phone}
+                            <br />
+                            {selectedPatient?.email}
+                        </div>
+                    }
                 </span>
-                <span>
-                    {selectedPatient.address.address}
-                    <br />
-                    {selectedPatient.address.city}, {selectedPatient.address.postalCode}
+                <span className="text-center">
+                    {!selectedPatient
+                        ?
+                        <div className="flex flex-col items-center">
+                            <div className="h-4 w-30 rounded-full skelTextList mb-1"></div>
+                            <div className="h-4 w-40 rounded-full skelTextList"></div>
+                        </div>
+                        :
+                        <div>
+                            {selectedPatient?.address.address}
+                            <br />
+                            {selectedPatient?.address.city}, {selectedPatient?.address.postalCode}
+                        </div>
+                    }
+
                 </span>
             </div>
             <div className="divPPMessage flex h-[10%] justify-center">

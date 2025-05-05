@@ -215,11 +215,109 @@ body {
   scrollbar-color: #ffffff #dbf0fe;
 }
 
+/* SKELETON ANIMATION */
+@keyframes skeletonBorder {
+  0%   { border: 0.8px solid #e2f4ff; }
+  50%  { border: 0.8px solid #009dff; }
+  100% { border: 0.8px solid #e2f4ff; }
+}
+@keyframes skeletonBG {
+  0%   { background-color: #ffffff; }
+  50%  { background-color: #e2f4ff; }
+  100% { background-color: #ffffff; }
+}
+
+@keyframes skeletonBGText {
+  0%   { background-color: #eef9ff; }
+  50%  { background-color: #bae5ff; }
+  100% { background-color: #eef9ff; }
+}
+
+.tdSkel {
+  animation: skeletonBorder 1.5s ease-in-out infinite;
+  -webkit-animation: skeletonBorder 3s ease-in-out infinite;
+}
+
+.skelImageList {
+  animation: skeletonBG 1.5s ease-in-out infinite;
+  -webkit-animation: skeletonBG 1.5s ease-in-out infinite;
+}
+
+.skelTextList {
+  animation: skeletonBGText 1.5s ease-in-out infinite;
+  -webkit-animation: skeletonBGText 1.5s ease-in-out infinite;
+}
+
+.tdSkel:nth-child(1) { animation-delay: 0s; }
+.tdSkel:nth-child(2) { animation-delay: 0.1s; }
+.tdSkel:nth-child(3) { animation-delay: 0.2s; }
+.tdSkel:nth-child(4) { animation-delay: 0.3s; }
+.tdSkel:nth-child(5) { animation-delay: 0.4s; }
+.tdSkel:nth-child(6) { animation-delay: 0.5s; }
+.tdSkel:nth-child(7) { animation-delay: 0.6s; }
+
+.tBodyTrSkel:nth-child(1) .skelImageList { animation-delay: -1.9s; }
+.tBodyTrSkel:nth-child(2) .skelImageList { animation-delay: -1.8s; }
+.tBodyTrSkel:nth-child(3) .skelImageList { animation-delay: -1.7s; }
+.tBodyTrSkel:nth-child(4) .skelImageList { animation-delay: -1.6s; }
+.tBodyTrSkel:nth-child(5) .skelImageList { animation-delay: -1.5s; }
+.tBodyTrSkel:nth-child(6) .skelImageList { animation-delay: -1.4s; }
+.tBodyTrSkel:nth-child(7) .skelImageList { animation-delay: -1.3s; }
+.tBodyTrSkel:nth-child(8) .skelImageList { animation-delay: -1.2s; }
+.tBodyTrSkel:nth-child(9) .skelImageList { animation-delay: -1.1s; }
+.tBodyTrSkel:nth-child(10) .skelImageList { animation-delay: -1.0s; }
+.tBodyTrSkel:nth-child(11) .skelImageList { animation-delay: -0.9s; }
+.tBodyTrSkel:nth-child(12) .skelImageList { animation-delay: -0.8s; }
+.tBodyTrSkel:nth-child(13) .skelImageList { animation-delay: -0.7s; }
+.tBodyTrSkel:nth-child(14) .skelImageList { animation-delay: -0.6s; }
+.tBodyTrSkel:nth-child(15) .skelImageList { animation-delay: -0.5s; }
+.tBodyTrSkel:nth-child(16) .skelImageList { animation-delay: -0.4s; }
+.tBodyTrSkel:nth-child(17) .skelImageList { animation-delay: -0.3s; }
+.tBodyTrSkel:nth-child(18) .skelImageList { animation-delay: -0.2s; }
+.tBodyTrSkel:nth-child(19) .skelImageList { animation-delay: -0.1s; }
+.tBodyTrSkel:nth-child(20) .skelImageList { animation-delay: 0s; }
+
+/* LOADER DATA OVERVIEW */
+.loaderOverview {
+  border: 2px solid rgba(0, 153, 255, 0.5);
+  border-left-color: transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: spin89345 0.9s linear infinite;
+  -webkit-animation: spin89345 0.9s linear infinite;
+}
+
+.loaderDataChart {
+  border: 2.5px solid rgba(0, 153, 255, 0.5);
+  border-left-color: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  animation: spin89345 0.9s linear infinite;
+  -webkit-animation: spin89345 0.9s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 925px) {
   .divPatientPage {
     flex-direction: column;
     padding: 0;
     gap: 0;
+  }
+
+  .divTitleSkel {
+    margin: 0;
+    width: 180px;
   }
 
   .divPatientProfile {
@@ -253,21 +351,10 @@ body {
   }
 
   .divPImage {
-    width: 15%;
+    width: 10%;
     height: 100%;
     align-items: center;
     margin: 0;
-  }
-
-  .patientImage {
-    width: 50px;
-    height: 50px;
-    border: 1px solid lightblue;
-    border-radius: 9999px;
-    -webkit-border-radius: 9999px;
-    -moz-border-radius: 9999px;
-    -ms-border-radius: 9999px;
-    -o-border-radius: 9999px;
   }
 
   .divPPMessage {
@@ -347,6 +434,9 @@ body {
 }
 
 @media only screen and (max-width: 582px) {
+  .divPImage {
+    width: 12%;
+  }
   .sectionDataOverview h2 {
     font-size: 1.2rem;
   }

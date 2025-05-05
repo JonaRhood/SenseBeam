@@ -4,10 +4,15 @@
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation";
+import SkeletonPatientList from "@/utils/skeletons";
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
-import { setPatientId, setPatientData, setScrollPatientsList, setPatientDataFullList, setSelectedPatient } from "@/store/slices/patientSlice";
+import {
+    setPatientId, setPatientData, setScrollPatientsList,
+    setPatientDataFullList, setSelectedPatient, setEmptyChartHistory,
+    setEmptyChartLabels
+} from "@/store/slices/patientSlice";
 
 
 interface PatientsListProps {
@@ -34,23 +39,23 @@ export default function PatientsList({ searchText }: PatientsListProps) {
     const divRef = useRef<HTMLDivElement>(null);
 
     const router = useRouter();
-    
+
     // Data Fetch Logic
     useEffect(() => {
         if (patientDataFullList && patientDataFullList.length > 0) return;
         const fetchPatients = async () => {
-            const dataPatients = await fetch('https://dummyjson.com/users');
+            const dataPatients = await fetch('https://dummyjson.com/users?limit=100&sortBy=id&order=asc');
             const result = await dataPatients.json();
-            
+
             result.users.sort((a: Patient, b: Patient) => a.lastName.localeCompare(b.lastName));
-            
+
             console.log(result.users)
             dispatch(setPatientData(result.users))
             dispatch(setPatientDataFullList(result.users))
         }
         fetchPatients();
     }, []);
-    
+
     // Scroll State Logic
     useEffect(() => {
         if (divRef.current) {
@@ -91,15 +96,17 @@ export default function PatientsList({ searchText }: PatientsListProps) {
     const handlePatientClick = (patient: any) => {
         dispatch(setSelectedPatient(patient))
         dispatch(setPatientId(patient.id))
+        dispatch(setEmptyChartHistory());
+        dispatch(setEmptyChartLabels());
         router.push(`/pacientes/${patient.id}`, { scroll: true })
         if (divRef.current) {
             dispatch(setScrollPatientsList(divRef.current.scrollTop));
         }
     }
 
-    if (!patientData) {
-        return <div>loading</div>
-    }
+    // if (!patientData) {
+    //     return <div>loading</div>
+    // }
 
     return (
         <div
@@ -119,33 +126,40 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {patientData?.map((patient: any) => (
-                        <tr
-                            id={`${patient.id}`}
-                            key={patient.id}
-                            className="tBodyTr"
-                            onClick={() => handlePatientClick(patient)}
-                            onMouseOver={() => router.prefetch(`pacientes/${patient.id}`)}
-                        >
-                            <td className="tdPatientsList">
-                                <div className="flex justify-center">
-                                    <Image
-                                        src={`${patient.image}`}
-                                        width={70}
-                                        height={70}
-                                        alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
-                                        className="listImage rounded-full border-[1px] border-blue-300"
-                                    />
-                                </div>
-                            </td>
-                            <td className="tdPatientsList">{patient.lastName}</td>
-                            <td className="tdPatientsList">{patient.firstName}</td>
-                            <td className="tdPatientsList tdAge">{patient.age}</td>
-                            <td className="tdPatientsList tdGender">{patient.gender}</td>
-                            <td className="tdPatientsList tdBloodGroup">{patient.bloodGroup}</td>
-                            <td className="tdPatientsList tdEmail">{patient.email}</td>
-                        </tr>
-                    ))}
+                    {patientData
+                        ?
+                        patientData?.map((patient: any) => (
+                            <tr
+                                id={`${patient.id}`}
+                                key={patient.id}
+                                className="tBodyTr"
+                                onClick={() => handlePatientClick(patient)}
+                                onMouseOver={() => router.prefetch(`pacientes/${patient.id}`)}
+                            >
+                                <td className="tdPatientsList">
+                                    <div className="flex justify-center">
+                                        <Image
+                                            src={`${patient.image}`}
+                                            width={70}
+                                            height={70}
+                                            alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
+                                            className="listImage rounded-full border-[1px] border-blue-300"
+                                            loading="eager"
+                                        />
+                                    </div>
+                                </td>
+                                <td className="tdPatientsList">{patient.lastName}</td>
+                                <td className="tdPatientsList">{patient.firstName}</td>
+                                <td className="tdPatientsList tdAge">{patient.age}</td>
+                                <td className="tdPatientsList tdGender">{patient.gender}</td>
+                                <td className="tdPatientsList tdBloodGroup">{patient.bloodGroup}</td>
+                                <td className="tdPatientsList tdEmail">{patient.email}</td>
+                            </tr>
+                        ))
+                        :
+                        <SkeletonPatientList />
+                    }
+
                 </tbody>
             </table>
         </div>
