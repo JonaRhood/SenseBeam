@@ -35,21 +35,27 @@ export default function SearchPatients() {
     return (
         <div className="flex flex-col h-full">
             <div className="flex justify-center h-[8svh] items-center relative">
-                <div className="flex h-full absolute p-[18px] -translate-x-[295px]">
-                    <SearchIcon onClick={() => inputRef.current?.focus()} />
-                </div>
-                <input
-                    ref={inputRef}
-                    className="border-[1px] border-blue-300 rounded-full w-[650px] px-4 pl-[50px] p-1"
-                    placeholder="Search by first or last name"
-                    onKeyDown={(e) => inputSearch(e)}
-                ></input>
-                <div className="flex h-full absolute p-[22px] translate-x-[295px]">
-                    <div
-                        className="xIcon flex w-[20px]"
-                        onClick={() => handleXIcon()}
-                    >
-                        {iconXOn ? <XIcon /> : ""}
+                <div className="divSearchIcon flex border-1 border-blue-300 rounded-full w-[50%] justify-center hover:bg-blue-100/20">
+                    <div className="items-center flex h-full">
+                        <div className=" py-1 flex h-[34px]">
+                            <SearchIcon onClick={() => inputRef.current?.focus()} />
+                        </div>
+                    </div>
+                    <input
+                        ref={inputRef}
+                        className="w-[92%] p-1 focus:outline-none"
+                        placeholder="Search by first or last name"
+                        onKeyDown={(e) => inputSearch(e)}
+                    ></input>
+                    <div className="flex h-full items-center">
+                        <div className="flex justify-center h-[34px] w-[50px] hover:cursor-text">
+                            <div
+                                className={`xIcon ${iconXOn ? 'flex' : 'hidden'} w-[20px] py-2`}
+                                onClick={() => handleXIcon()}
+                            >
+                                <XIcon onClick={() => inputRef.current?.focus()} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

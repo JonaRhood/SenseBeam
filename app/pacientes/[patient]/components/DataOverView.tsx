@@ -11,36 +11,37 @@ export default function DataOverview() {
     }
 
     return (
-        <section className="flex flex-col justify-between w-full">
+        <section className="sectionDataOverview flex flex-col justify-between w-full h-full
+        border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg">
             <h2 className="text-3xl font-semibold text-gray-800 p-4 bg-[#d9efff] rounded-t-[0.6rem] text-center">
                 Patient Vital Signs
             </h2>
-            <ul className="text-xl text-gray-700">
-                <li className="flex justify-between px-20 py-[1.4rem]">
+            <ul className="text-xl text-gray-700 h-full flex flex-col">
+                <li className="flex justify-between h-[14.28%] items-center px-20">
                     <span className="font-semibold text-gray-800">Heart Rate:</span>
                     <span>{selectedPatientTelemetry.heartRate} bpm</span>
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem] bg-[#d9efff]/70">
+                <li className="flex justify-between h-[14.28%] items-center px-20 bg-[#d9efff]/70">
                     <span className="font-semibold text-gray-800">Oxygen Saturation:</span>{' '}
                     {selectedPatientTelemetry.oxygen} %
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem]">
+                <li className="flex justify-between h-[14.28%] items-center px-20">
                     <span className="font-semibold text-gray-800">Body Temperature:</span>{' '}
                     {selectedPatientTelemetry.temperature} °C
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem] bg-[#d9efff]/70">
+                <li className="flex justify-between h-[14.28%] items-center px-20 bg-[#d9efff]/70">
                     <span className="font-semibold text-gray-800">Respiration Rate:</span>{' '}
                     {selectedPatientTelemetry.respirationRate} rpm
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem]">
+                <li className="flex justify-between h-[14.28%] items-center px-20">
                     <span className="font-semibold text-gray-800">Glucose Level:</span>{' '}
                     {selectedPatientTelemetry.glucose} mg/dL
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem] bg-[#d9efff]/70">
+                <li className="flex justify-between h-[14.28%] items-center px-20 bg-[#d9efff]/70">
                     <span className="font-semibold text-gray-800">Systolic Pressure:</span>{' '}
                     {selectedPatientTelemetry.bloodPressure.systolic} mmHg
                 </li>
-                <li className="flex justify-between px-20 py-[1.4rem]">
+                <li className="flex justify-between h-[14.28%] items-center px-20">
                     <span className="font-semibold text-gray-800">Diastolic Pressure:</span>{' '}
                     {selectedPatientTelemetry.bloodPressure.diastolic} mmHg
                 </li>

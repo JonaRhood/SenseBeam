@@ -15,16 +15,16 @@ export default function PatientProfile() {
     const selectedPatient = useAppSelector((state: RootState) => state.patient.selectedPatient);
     const dispatch = useAppDispatch()
 
-    
+
     useEffect(() => {
         const fetchDataPatient = async (userId: number) => {
             try {
                 const response = await fetch(`https://dummyjson.com/users/${userId}`);
                 const result = await response.json();
-    
+
                 dispatch(setSelectedPatient(result));
                 console.log("FETCHDATA", result)
-    
+
             } catch (err) {
                 throw new Error("Error Fetching Patient Data");
             }
@@ -32,7 +32,7 @@ export default function PatientProfile() {
 
         if (!selectedPatient) {
             fetchDataPatient(patientId)
-        } 
+        }
     }, [])
 
 
@@ -41,20 +41,23 @@ export default function PatientProfile() {
     }
 
     return (
-        <div className="w-full flex flex-col justify-center">
-            <div className=" flex justify-center mb-2">
+        <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
+            <div className="divPImage flex aspect-square h-[50%] justify-center mb-2">
                 <Image
                     src={`${selectedPatient.image}`}
                     width={300}
                     height={300}
                     alt={`Imagen de ${selectedPatient.firstName} ${selectedPatient.lastName}`}
+                    className="patientImage object-contain aspect-square"
+                    priority={true}
+                    loading={"eager"}
                 />
             </div>
-            <div className="flex flex-col items-center justify-center mb-6">
-                <h4 className="font-bold text-[1.5rem] mb-1">
-                    {selectedPatient.firstName} {selectedPatient.lastName}, {selectedPatient.age}
+            <div className="divPPData flex flex-col h-[35%] items-center">
+                <h4 className="font-bold text-[1.5rem] whitespace-nowrap">
+                        {selectedPatient.firstName} {selectedPatient.lastName}, {selectedPatient.age}
                 </h4>
-                <span className="mb-4 text-center">
+                <span className="text-center">
                     {selectedPatient.phone}
                     <br />
                     {selectedPatient.email}
@@ -65,8 +68,8 @@ export default function PatientProfile() {
                     {selectedPatient.address.city}, {selectedPatient.address.postalCode}
                 </span>
             </div>
-            <div className="flex justify-center">
-                <button className="bg-blue-500 w-[200px] h-[50px] rounded-md text-[1.2rem] 
+            <div className="divPPMessage flex h-[10%] justify-center">
+                <button className="buttonPPMessage bg-blue-500 w-[200px] rounded-md text-[1.2rem] 
                 text-white font-bold hover:bg-blue-400 hover:cursor-pointer">
                     Send Message
                 </button>

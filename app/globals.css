@@ -69,25 +69,27 @@ body {
 
 /* LIST */
 
+.unselectedFirstTab {
+  background-color: #c6e8ff;
+  border-bottom: 1px solid #bfdbff;
+  border-left: 1px solid #bfdbff;
+  border-top-left-radius: 0.8rem;
+}
+
+.unselectedFirstTab:hover {
+  cursor: pointer;
+  background-color: #d9efff;
+}
+
 .unselectedTab {
   background-color: #c6e8ff;
   border-bottom: 1px solid #bfdbff;
   border-left: 1px solid #bfdbff;
-  transition: background-color 0.3s ease-in-out;
-  -webkit-transition: background-color 0.3s ease-in-out;
-  -moz-transition: background-color 0.3s ease-in-out;
-  -ms-transition: background-color 0.3s ease-in-out;
-  -o-transition: background-color 0.3s ease-in-out;
 }
 
 .unselectedTab:hover {
   cursor: pointer;
   background-color: #d9efff;
-  transition: background-color 0.01s ease-in-out;
-  -webkit-transition: background-color 0.01s ease-in-out;
-  -moz-transition: background-color 0.01s ease-in-out;
-  -ms-transition: background-color 0.01s ease-in-out;
-  -o-transition: background-color 0.01s ease-in-out;
 }
 
 .closeTab {
@@ -174,7 +176,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0; 
+  background: #f0f0f0;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -189,6 +191,219 @@ body {
 
 /* Firefox */
 * {
-  scrollbar-width: thin;     
+  scrollbar-width: thin;
   scrollbar-color: #ffffff #dbf0fe;
+}
+
+@media only screen and (max-width: 925px) {
+  .divPatientPage {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+  }
+  
+  .divPatientProfile {
+    width: 100%;
+    height: 100px;
+    padding: 10px 5%;
+  }
+
+  .divInnerPP {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .divPPData {
+    display: flex;
+    width: 50%;
+    margin: 0;
+  }
+
+  .divPPData h4 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .divPPData span {
+    display: none;
+  }
+
+  .divPImage {
+    width: 15%;
+    height: 100%;
+    align-items: center;
+    margin: 0;
+  }
+
+  .patientImage {
+    width: 50px;
+    height: 50px;
+    border: 1px solid lightblue;
+    border-radius: 9999px;
+    -webkit-border-radius: 9999px;
+    -moz-border-radius: 9999px;
+    -ms-border-radius: 9999px;
+    -o-border-radius: 9999px;
+}
+
+  .divPPMessage {
+    width: 35%;
+    height: 100%;
+    align-items: center;
+  }
+
+  .buttonPPMessage {
+    width: 100%;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .divPOverview {
+    width: 100%;
+    padding: 0 5%;
+    padding-bottom: 5%;
+  }
+
+  .sectionDataOverview ul li{
+    padding-inline: 20px;
+  }
+
+  .sectionDataOverview h2 {
+    font-size: 1.7rem;
+  }
+
+  .sectionDataChart h2 {
+    font-size: 1.7rem;
+  }
+
+  .divPatientTab {
+    width: 45%;
+  }
+
+  .divPatientTabX {
+    width: 10%;
+  }
+}
+
+@media only screen and (max-width: 787px) {
+  .divSearchIcon {
+    width: 80%;
+  }
+
+  .thEmail {
+    border: 2px solid red;
+    display: none;
+  }
+
+  .tdEmail {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 582px) {
+  .sectionDataOverview h2{
+    font-size: 1.2rem;
+  } 
+
+  .sectionDataChart h2{
+    font-size: 1.2rem;
+  } 
+  .sectionDataOverview ul{
+    font-size: 1rem;
+  } 
+
+  .buttonPPMessage {
+    font-size: 0.9rem;
+  }
+
+  .divTabs {
+    height: 38px;
+  }
+  
+  .divPatientTab {
+    width: 42.5%;
+    font-size: 0.9rem;
+  }
+
+  .divPatientTabX {
+    width: 15%;
+  }
+
+  .divLogo {
+    height: 8svh;
+  }
+
+  .childrenLayout {
+    height: 92svh;
+  }
+
+  .divChildrenLayout {
+    height: 90svh !important;
+  }
+
+  .logo-container {
+    height: 100%;
+    display: flex;
+    padding: 5px 0;
+  }
+
+  .logo-container a {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 496px) {
+
+
+  .divSearchIcon {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .divPPData h4 {
+    font-size: 1rem;
+  }
+
+  .thBloodGroup {
+    display: none;
+  }
+
+  .thGender {
+    display: none;
+  }
+
+  .tdBloodGroup {
+    display: none;
+  }
+
+  .tdGender {
+    display: none;
+  }
+
+  .childrenLayout {
+    padding-inline: 10px;
+  }
+
+  .divChildrenLayout {
+    height: 88svh;
+  }
+
+  .tdPatientsList {
+    padding-inline: 0px;
+  }
+}
+
+@media only screen and (max-width: 324px) {
+  .thAge {
+    display: none;
+  }
+
+  .tdAge {
+    display: none;
+  }
 }

@@ -12,15 +12,16 @@ export default function DataChart() {
     }
 
     return (
-        <section className="flex flex-col justify-between items-center w-full h-full">
+        <section className="sectionDataChart flex flex-col justify-between items-center w-full h-full 
+        border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg">
             <h2 className="text-3xl w-full font-semibold text-gray-800 p-4 bg-[#d9efff] rounded-t-[0.6rem] text-center">
                 Patient Vital Signs Chart
             </h2>
-            <div className="flex flex-col h-full w-[98%]">
-                <div className="h-[50%]">
+            <div className="flex flex-col h-full w-[98%] justify-center">
+                <div className="flex h-[48%]">
                     <BloodChart type={"systolic"} />
                 </div>
-                <div className="h-[50%]">
+                <div className="flex h-[48%]">
                     <BloodChart type={"diastolic"} />
                 </div>
             </div>

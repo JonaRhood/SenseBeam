@@ -103,7 +103,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
     return (
         <div
-            className="flex w-full h-full overflow-hidden overflow-y-scroll overflow-x-auto "
+            className="flex w-full h-full overflow-hidden overflow-y-scroll"
             ref={divRef}
         >
             <table className="w-full rounded-md h-[0px]">
@@ -112,10 +112,10 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                         <th className="thPatientsList w-[150px]">Imagen</th>
                         <th className="thPatientsList w-[180px]" onClick={() => filterByType("lastName")}>Apellidos</th>
                         <th className="thPatientsList w-[180px]" onClick={() => filterByType("firstName")}>Nombre</th>
-                        <th className="thPatientsList w-[120px]" onClick={() => filterByType("age")}>Edad</th>
-                        <th className="thPatientsList w-[150px]" onClick={() => filterByType("gender")}>Gender</th>
-                        <th className="thPatientsList w-[120px]" onClick={() => filterByType("bloodGroup")}>ABO</th>
-                        <th className="thPatientsList">Email</th>
+                        <th className="thPatientsList w-[120px] thAge" onClick={() => filterByType("age")}>Edad</th>
+                        <th className="thPatientsList w-[150px] thBloodGroup" onClick={() => filterByType("gender")}>Gender</th>
+                        <th className="thPatientsList w-[120px] thGender" onClick={() => filterByType("bloodGroup")}>ABO</th>
+                        <th className="thPatientsList thEmail">Email</th>
                     </tr>
                 </thead>
                 <tbody className="">
@@ -140,10 +140,10 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                             </td>
                             <td className="tdPatientsList">{patient.lastName}</td>
                             <td className="tdPatientsList">{patient.firstName}</td>
-                            <td className="tdPatientsList">{patient.age}</td>
-                            <td className="tdPatientsList">{patient.gender}</td>
-                            <td className="tdPatientsList">{patient.bloodGroup}</td>
-                            <td className="tdPatientsList">{patient.email}</td>
+                            <td className="tdPatientsList tdAge">{patient.age}</td>
+                            <td className="tdPatientsList tdGender">{patient.gender}</td>
+                            <td className="tdPatientsList tdBloodGroup">{patient.bloodGroup}</td>
+                            <td className="tdPatientsList tdEmail">{patient.email}</td>
                         </tr>
                     ))}
                 </tbody>

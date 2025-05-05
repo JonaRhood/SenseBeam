@@ -1,14 +1,14 @@
 type SearchIconProps = {
     onClick?: () => void;
-  };
+};
 
 export default function SearchIcon({ onClick }: SearchIconProps) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" 
-            width="70" 
-            viewBox="0 0 169 169" 
-            fill="none" 
-            className="hover:cursor-text" 
+        <svg xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            viewBox="0 0 169 169"
+            fill="none"
+            className="hover:cursor-text"
             onClick={onClick}
         >
             <path d="M138.017 147.875L93.6542 103.512C90.1333 106.329 86.0844 108.559 81.5073 

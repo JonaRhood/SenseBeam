@@ -31,20 +31,20 @@ export default function PatientTabs() {
     }
 
     return (
-        <div className="flex h-[30px]">
+        <div className="divTabs flex h-[30px]">
             <div
-                className={`w-[48%] flex justify-center items-center ${dataOverviewTab ? "" : "unselectedTab"}`}
+                className={`divPatientTab w-[48%] flex justify-center items-center ${dataOverviewTab ? "" : "unselectedFirstTab"}`}
                 onClick={() => handleTabSelection(1)}
             >
                 Sensor Data Overview
             </div>
             <div
-                className={`w-[48%] flex justify-center items-center ${datachartTab ? "" : "unselectedTab"}`}
+                className={`divPatientTab w-[48%] flex justify-center items-center ${datachartTab ? "" : "unselectedTab"}`}
                 onClick={() => handleTabSelection(2)}
             >
                 Sensor Data Chart
             </div>
-            <div className="w-[4%] flex justify-center items-center closeTab">
+            <div className="divPatientTabX w-[4%] flex justify-center items-center closeTab">
                 <div
                     className="flex items-center w-full h-full justify-center"
                     onClick={() => handleCloseModal()}

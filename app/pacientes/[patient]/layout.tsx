@@ -46,7 +46,7 @@ export default function PatientLayout({ children }: LayoutProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="">
+      <div>
         <DataOverviewTabs />
       </div>
       <div className="flex flex-col h-full">

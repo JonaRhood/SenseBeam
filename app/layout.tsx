@@ -54,16 +54,18 @@ export default async function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className="h-[10svh] flex justify-center items-center">
-            <div className="logo-container flex justify-center">
-              <Link href={"/"}>
-                <Logo />
-              </Link>
+          <div className="divContainer">
+            <div className="divLogo h-[10svh] flex justify-center items-center">
+              <div className="logo-container flex justify-center">
+                <Link href={"/"}>
+                  <Logo />
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="h-[90svh] px-10">
-            <div className="h-[85svh] bg-white border-[1px] border-blue-200 rounded-2xl relative">
-              {children}
+            <div className="childrenLayout h-[90svh] px-10">
+              <div className="divChildrenLayout h-[85svh] bg-white border-[1px] border-blue-200 rounded-2xl relative">
+                {children}
+              </div>
             </div>
           </div>
         </body>
