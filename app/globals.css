@@ -41,15 +41,6 @@ body {
   -o-transition: fill 1s ease-in-out;
 }
 
-.logo-container:hover svg path:nth-child(8) {
-  fill: rgb(0, 97, 127);
-  transition: fill 0.3s ease-in-out;
-  -webkit-transition: fill 0.3s ease-in-out;
-  -moz-transition: fill 0.3s ease-in-out;
-  -ms-transition: fill 0.3s ease-in-out;
-  -o-transition: fill 0.3s ease-in-out;
-}
-
 .logo-container svg linearGradient stop:nth-child(1) {
   transition: stop-color 1s ease-in-out;
   -webkit-transition: stop-color 1s ease-in-out;
@@ -58,13 +49,24 @@ body {
   -o-transition: stop-color 1s ease-in-out;
 }
 
-.logo-container:hover svg linearGradient stop:nth-child(1) {
-  stop-color: rgb(0, 195, 255);
-  transition: stop-color 0.3s ease-in-out;
-  -webkit-transition: stop-color 0.3s ease-in-out;
-  -moz-transition: stop-color 0.3s ease-in-out;
-  -ms-transition: stop-color 0.3s ease-in-out;
-  -o-transition: stop-color 0.3s ease-in-out;
+@media (hover: hover) and (pointer: fine) {
+  .logo-container:hover svg path:nth-child(8) {
+    fill: rgb(0, 97, 127);
+    transition: fill 0.3s ease-in-out;
+    -webkit-transition: fill 0.3s ease-in-out;
+    -moz-transition: fill 0.3s ease-in-out;
+    -ms-transition: fill 0.3s ease-in-out;
+    -o-transition: fill 0.3s ease-in-out;
+  }
+
+  .logo-container:hover svg linearGradient stop:nth-child(1) {
+    stop-color: rgb(0, 195, 255);
+    transition: stop-color 0.3s ease-in-out;
+    -webkit-transition: stop-color 0.3s ease-in-out;
+    -moz-transition: stop-color 0.3s ease-in-out;
+    -ms-transition: stop-color 0.3s ease-in-out;
+    -o-transition: stop-color 0.3s ease-in-out;
+  }
 }
 
 /* LIST */
@@ -76,20 +78,32 @@ body {
   border-top-left-radius: 0.8rem;
 }
 
-.unselectedFirstTab:hover {
-  cursor: pointer;
-  background-color: #d9efff;
-}
-
 .unselectedTab {
   background-color: #c6e8ff;
   border-bottom: 1px solid #bfdbff;
   border-left: 1px solid #bfdbff;
 }
 
-.unselectedTab:hover {
-  cursor: pointer;
-  background-color: #d9efff;
+@media (hover: hover) and (pointer: fine) {
+  .unselectedFirstTab:hover {
+    cursor: pointer;
+    background-color: #d9efff;
+  }
+
+  .unselectedTab:hover {
+    cursor: pointer;
+    background-color: #d9efff;
+  }
+
+  .closeTab:hover {
+    cursor: pointer;
+    background-color: #ffb4b4;
+    transition: background-color 0.01s ease-in-out;
+    -webkit-transition: background-color 0.01s ease-in-out;
+    -moz-transition: background-color 0.01s ease-in-out;
+    -ms-transition: background-color 0.01s ease-in-out;
+    -o-transition: background-color 0.01s ease-in-out;
+  }
 }
 
 .closeTab {
@@ -104,16 +118,6 @@ body {
   -o-transition: background-color 0.3s ease-in-out;
 }
 
-.closeTab:hover {
-  cursor: pointer;
-  background-color: #ffb4b4;
-  transition: background-color 0.01s ease-in-out;
-  -webkit-transition: background-color 0.01s ease-in-out;
-  -moz-transition: background-color 0.01s ease-in-out;
-  -ms-transition: background-color 0.01s ease-in-out;
-  -o-transition: background-color 0.01s ease-in-out;
-}
-
 .thPatientsList {
   background-color: #dbf0fe;
   padding: 5px;
@@ -124,17 +128,9 @@ body {
   -o-transition: background-color 0.3s ease-in-out;
 }
 
-.thPatientsList:hover {
-  background-color: #b4e0ff;
-  cursor: pointer;
-  transition: background-color 0.01s ease-in-out;
-  -webkit-transition: background-color 0.01s ease-in-out;
-  -moz-transition: background-color 0.01s ease-in-out;
-  -ms-transition: background-color 0.01s ease-in-out;
-  -o-transition: background-color 0.01s ease-in-out;
-}
-
 .tBodyTr {
+  -webkit-tap-highlight-color: rgba(0, 123, 255, 0.8);
+  touch-action: manipulation; 
   transition: background-color 0.3s ease-in-out;
   -webkit-transition: background-color 0.3s ease-in-out;
   -moz-transition: background-color 0.3s ease-in-out;
@@ -142,20 +138,44 @@ body {
   -o-transition: background-color 0.3s ease-in-out;
 }
 
-.tBodyTr:hover {
-  cursor: pointer;
-  background-color: #f2faff;
-  transition: background-color 0.01s ease-in-out;
-  -webkit-transition: background-color 0.01s ease-in-out;
-  -moz-transition: background-color 0.01s ease-in-out;
-  -ms-transition: background-color 0.01s ease-in-out;
-  -o-transition: background-color 0.01s ease-in-out;
+.tBodyTr:nth-child(2n) {
+  background-color: rgba(242, 250, 255, 0.8);
+}
+
+.tBodyTr:active {
+  background-color: rgba(0, 123, 255, 0.1);   
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .thPatientsList:hover {
+    background-color: #b4e0ff;
+    cursor: pointer;
+    transition: background-color 0.01s ease-in-out;
+    -webkit-transition: background-color 0.01s ease-in-out;
+    -moz-transition: background-color 0.01s ease-in-out;
+    -ms-transition: background-color 0.01s ease-in-out;
+    -o-transition: background-color 0.01s ease-in-out;
+  }
+
+  .tBodyTr:hover {
+    cursor: pointer;
+    background-color: #e7f6ff;
+    transition: background-color 0.01s ease-in-out;
+    -webkit-transition: background-color 0.01s ease-in-out;
+    -moz-transition: background-color 0.01s ease-in-out;
+    -ms-transition: background-color 0.01s ease-in-out;
+    -o-transition: background-color 0.01s ease-in-out;
+  }
 }
 
 .tdPatientsList {
-  border: 1px solid #bde2ff;
+  border: 0.8px solid #bde2ff;
   padding: 5px;
   text-align: center;
+}
+
+.listImage {
+  background: white;
 }
 
 /* ICONS */
@@ -201,7 +221,7 @@ body {
     padding: 0;
     gap: 0;
   }
-  
+
   .divPatientProfile {
     width: 100%;
     height: 100px;
@@ -221,7 +241,7 @@ body {
     margin: 0;
   }
 
-  .divPPData h4 {
+  .divPPData h3 {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -248,7 +268,7 @@ body {
     -moz-border-radius: 9999px;
     -ms-border-radius: 9999px;
     -o-border-radius: 9999px;
-}
+  }
 
   .divPPMessage {
     width: 35%;
@@ -268,7 +288,7 @@ body {
     padding-bottom: 5%;
   }
 
-  .sectionDataOverview ul li{
+  .sectionDataOverview ul li {
     padding-inline: 20px;
   }
 
@@ -304,17 +324,40 @@ body {
   }
 }
 
-@media only screen and (max-width: 582px) {
-  .sectionDataOverview h2{
-    font-size: 1.2rem;
-  } 
+@media only screen and (max-height: 790px) {
+  .divInnerPP {
+    padding: 0;
+  }
+}
 
-  .sectionDataChart h2{
+@media only screen and (max-height: 708px) {
+  .divChildrenSensors {
+    height: 95%;
+  }
+
+  .divPPData {
+    height: 35%;
+  }
+}
+
+@media only screen and (max-height: 615px) {
+  .divChildrenSensors {
+    height: 92%;
+  }
+}
+
+@media only screen and (max-width: 582px) {
+  .sectionDataOverview h2 {
     font-size: 1.2rem;
-  } 
-  .sectionDataOverview ul{
+  }
+
+  .sectionDataChart h2 {
+    font-size: 1.2rem;
+  }
+
+  .sectionDataOverview ul {
     font-size: 1rem;
-  } 
+  }
 
   .buttonPPMessage {
     font-size: 0.9rem;
@@ -323,7 +366,7 @@ body {
   .divTabs {
     height: 38px;
   }
-  
+
   .divPatientTab {
     width: 42.5%;
     font-size: 0.9rem;
@@ -356,8 +399,70 @@ body {
   }
 }
 
-@media only screen and (max-width: 496px) {
+@media only screen and (max-height: 540px) {
+  .divPatientPage {
+    padding: 0;
+  }
 
+  .divPatientProfile {
+    display: none;
+  }
+
+  .chartjs-render-monitor + * .tick text {
+    border: 2px solid red;
+  }
+
+  .divPOverview {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sectionDataOverview {
+    background-color: white;
+    border: 0;
+  }
+
+  .divFirstChart {
+    height: 100%;
+  }
+
+  .divSecondChart {
+    display: none;
+  }
+
+  .sectionDataOverview h2 {
+    background-color: white;
+    border-bottom: 1px solid rgb(213, 245, 255);
+  }
+
+  .sectionDataOverview p {
+    padding: 0;
+  }
+
+  .sectionDataChart {
+    background-color: white;
+    border: 0;
+  }
+
+  .sectionDataChart h2 {
+    background-color: white;
+    border-bottom: 1px solid rgb(213, 245, 255);
+  }
+
+  .sectionDataChart p {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 496px) {
+  html {
+    background: #beeaff;
+  }
+
+  body {
+    overflow: auto;
+  }
 
   .divSearchIcon {
     width: 100%;
@@ -365,7 +470,7 @@ body {
     border: 0;
   }
 
-  .divPPData h4 {
+  .divPPData h3 {
     font-size: 1rem;
   }
 
@@ -375,6 +480,11 @@ body {
 
   .thGender {
     display: none;
+  }
+
+  .listImage {
+    width: 60px;
+    height: 60px;
   }
 
   .tdBloodGroup {

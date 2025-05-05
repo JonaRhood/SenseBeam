@@ -18,10 +18,10 @@ export default function DataChart() {
                 Patient Vital Signs Chart
             </h2>
             <div className="flex flex-col h-full w-[98%] justify-center">
-                <div className="flex h-[48%]">
+                <div className="divFirstChart flex h-[48%]">
                     <BloodChart type={"systolic"} />
                 </div>
-                <div className="flex h-[48%]">
+                <div className="divSecondChart flex h-[48%]">
                     <BloodChart type={"diastolic"} />
                 </div>
             </div>

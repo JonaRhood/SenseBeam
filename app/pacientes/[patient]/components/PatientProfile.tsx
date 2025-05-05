@@ -54,9 +54,9 @@ export default function PatientProfile() {
                 />
             </div>
             <div className="divPPData flex flex-col h-[35%] items-center">
-                <h4 className="font-bold text-[1.5rem] whitespace-nowrap">
-                        {selectedPatient.firstName} {selectedPatient.lastName}, {selectedPatient.age}
-                </h4>
+                <h3 className="font-bold text-[1.5rem] whitespace-nowrap">
+                    {selectedPatient.firstName} {selectedPatient.lastName}, {selectedPatient.age}
+                </h3>
                 <span className="text-center">
                     {selectedPatient.phone}
                     <br />

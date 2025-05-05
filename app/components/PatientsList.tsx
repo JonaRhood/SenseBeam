@@ -90,11 +90,11 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
     const handlePatientClick = (patient: any) => {
         dispatch(setSelectedPatient(patient))
+        dispatch(setPatientId(patient.id))
+        router.push(`/pacientes/${patient.id}`, { scroll: true })
         if (divRef.current) {
             dispatch(setScrollPatientsList(divRef.current.scrollTop));
         }
-        router.push(`/pacientes/${patient.id}`, { scroll: true })
-        dispatch(setPatientId(patient.id))
     }
 
     if (!patientData) {
@@ -134,7 +134,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                                         width={70}
                                         height={70}
                                         alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
-                                        className="rounded-full border-[1px] border-blue-300"
+                                        className="listImage rounded-full border-[1px] border-blue-300"
                                     />
                                 </div>
                             </td>

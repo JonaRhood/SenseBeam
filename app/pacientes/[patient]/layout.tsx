@@ -49,7 +49,7 @@ export default function PatientLayout({ children }: LayoutProps) {
       <div>
         <DataOverviewTabs />
       </div>
-      <div className="flex flex-col h-full">
+      <div className="divChildrenSensors flex flex-col h-full">
         {children}
       </div>
     </div>

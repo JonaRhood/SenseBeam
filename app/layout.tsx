@@ -56,8 +56,8 @@ export default async function RootLayout({
         >
           <div className="divContainer">
             <div className="divLogo h-[10svh] flex justify-center items-center">
-              <div className="logo-container flex justify-center">
-                <Link href={"/"}>
+              <div className="logo-container h-full flex justify-center">
+                <Link href={"/"} className="object-contain aspect-auto flex">
                   <Logo />
                 </Link>
               </div>

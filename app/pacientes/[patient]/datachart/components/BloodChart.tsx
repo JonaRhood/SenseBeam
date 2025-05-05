@@ -32,7 +32,7 @@ export default function BloodChart({ type }: { type: string }) {
         scales: {
             x: {
                 display: true,
-                grid: { color: "#d9efff" }
+                grid: { color: "#d9efff" },
             },
             y: {
                 display: true,

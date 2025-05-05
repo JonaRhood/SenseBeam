@@ -34,7 +34,7 @@ export default function SearchPatients() {
 
     return (
         <div className="flex flex-col h-full">
-            <div className="flex justify-center h-[8svh] items-center relative">
+            <div className="flex justify-center h-[67px] items-center relative">
                 <div className="divSearchIcon flex border-1 border-blue-300 rounded-full w-[50%] justify-center hover:bg-blue-100/20">
                     <div className="items-center flex h-full">
                         <div className=" py-1 flex h-[34px]">
