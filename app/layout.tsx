@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Logo from "./components/Logo";
 import Link from "next/link";
 import "./globals.css";
+import { PreloadResources } from "./preload-resources";
 import { cookies } from "next/headers";
 
 const geistSans = Geist({
@@ -51,6 +52,7 @@ export default async function RootLayout({
   return (
     <StoreProvider initialState={initialReduxState}>
       <html lang="en">
+        <PreloadResources />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
