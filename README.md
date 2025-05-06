@@ -1,11 +1,12 @@
 <a id="readme-top"></a>
 
-<div style="display: flex; align-items: center; justify-content: center;">
-  <img src="./public/logo/single-logo.svg" alt="Logo" width="50" style="margin-right: 10px;">
-  <h3 style="font-size: 2rem;">SenseBeam</h3>
+
+<div align="right">
+  <img src="./public/logo/single-logo.svg" alt="Logo" width="40"">
 </div>
 
----
+# SenseBeam
+
 <br />
 
 <div align="center">
