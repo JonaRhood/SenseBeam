@@ -70,7 +70,6 @@ body {
 }
 
 /* LIST */
-
 .unselectedFirstTab {
   background-color: #c6e8ff;
   border-bottom: 1px solid #bfdbff;
@@ -144,6 +143,11 @@ body {
 
 .tBodyTr:active {
   background-color: rgba(0, 123, 255, 0.1);   
+}
+
+.divtablePatients {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px; 
 }
 
 @media (hover: hover) and (pointer: fine) {

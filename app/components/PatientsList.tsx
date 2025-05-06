@@ -104,25 +104,21 @@ export default function PatientsList({ searchText }: PatientsListProps) {
         }
     }
 
-    // if (!patientData) {
-    //     return <div>loading</div>
-    // }
-
     return (
         <div
-            className="flex w-full h-full overflow-hidden overflow-y-scroll"
+            className="divtablePatients flex w-full h-full overflow-hidden overflow-y-scroll"
             ref={divRef}
         >
             <table className="w-full rounded-md h-[0px]">
                 <thead className="sticky top-0 z-10 w-full">
                     <tr>
-                        <th className="thPatientsList w-[150px]">Imagen</th>
-                        <th className="thPatientsList w-[180px]" onClick={() => filterByType("lastName")}>Apellidos</th>
-                        <th className="thPatientsList w-[180px]" onClick={() => filterByType("firstName")}>Nombre</th>
-                        <th className="thPatientsList w-[120px] thAge" onClick={() => filterByType("age")}>Edad</th>
-                        <th className="thPatientsList w-[150px] thBloodGroup" onClick={() => filterByType("gender")}>Gender</th>
-                        <th className="thPatientsList w-[120px] thGender" onClick={() => filterByType("bloodGroup")}>ABO</th>
-                        <th className="thPatientsList thEmail">Email</th>
+                        <th className="thPatientsList w-[12%]">Imagen</th>
+                        <th className="thPatientsList w-[14%]" onClick={() => filterByType("lastName")}>Apellidos</th>
+                        <th className="thPatientsList w-[14%]" onClick={() => filterByType("firstName")}>Nombre</th>
+                        <th className="thPatientsList w-[10%] thAge" onClick={() => filterByType("age")}>Edad</th>
+                        <th className="thPatientsList w-[12%] thBloodGroup" onClick={() => filterByType("gender")}>Gender</th>
+                        <th className="thPatientsList w-[10%] thGender" onClick={() => filterByType("bloodGroup")}>ABO</th>
+                        <th className="thPatientsList thEmail w-[28%]">Email</th>
                     </tr>
                 </thead>
                 <tbody className="">
@@ -144,7 +140,8 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                                             height={70}
                                             alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
                                             className="listImage rounded-full border-[1px] border-blue-300"
-                                            loading="eager"
+                                            loading="lazy"
+                                            quality={50}
                                         />
                                     </div>
                                 </td>

@@ -62,8 +62,8 @@ export default async function RootLayout({
                 </Link>
               </div>
             </div>
-            <div className="childrenLayout h-[90svh] px-10">
-              <div className="divChildrenLayout h-[85svh] bg-white border-[1px] border-blue-200 rounded-2xl relative">
+            <div className="childrenLayout h-[90svh] px-10 flex justify-center">
+              <div className="divChildrenLayout h-[85svh] w-full bg-white border-[1px] border-blue-200 rounded-t-2xl relative">
                 {children}
               </div>
             </div>

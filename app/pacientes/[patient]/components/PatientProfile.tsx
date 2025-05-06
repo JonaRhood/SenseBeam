@@ -53,6 +53,7 @@ export default function PatientProfile() {
                                 className="object-cover bg-white"
                                 priority={true}
                                 loading={"eager"}
+                                
                             />
                         }
                     </div>
