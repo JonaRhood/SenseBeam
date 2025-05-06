@@ -1,6 +1,11 @@
 <a id="readme-top"></a>
 
+
 # SenseBeam
+
+<div align="right">
+    <img src="./public/logo/single-logo.svg" alt="Logo" width="60">
+</div>
 
 <div align="center">
     <img src="./public/img/readme-banner.gif" alt="Logo" width="800" >
