@@ -16,18 +16,17 @@ type LayoutProps = {
 
 export default function PatientLayout({ children }: LayoutProps) {
   const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
-  const patientId = useAppSelector((state: RootState) => state.patient.patientId);
   const dispatch = useAppDispatch();
 
   const params = useParams();
   const { patient } = params;
-  const patientId2 = Number(patient)
+  const patientId = Number(patient)
 
   useEffect(() => {
     const ws = new WebSocket(`wss://sensebeam.azurewebsites.net/ws`)
     ws.onmessage = event => {
       const data = JSON.parse(event.data)
-      const user = data.find((data: any) => data.id == patientId2);
+      const user = data.find((data: any) => data.id == patientId);
 
       dispatch(setSelectedPatientTelemetry(user));
     }

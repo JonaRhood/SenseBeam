@@ -16,7 +16,7 @@ export default function PatientProfile() {
     const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
     const dispatch = useAppDispatch()
 
-    // Fetch and Back/Forward Logic
+    // Patient Fetch and Back/Forward Logic
     useEffect(() => {
         if (!selectedPatient) {
             fetchDataPatient(patientId)
@@ -49,7 +49,7 @@ export default function PatientProfile() {
     return (
         <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
             <div className="divPImage flex justify-center mb-2">
-                <div className="flex aspect-square justify-center w-56">
+                <div className="divPImage2 flex aspect-square justify-center w-52">
                     <div className="w-full aspect-square relative overflow-hidden border-3 border-blue-300 rounded-full skelTextList">
                         {selectedPatient &&
                             <Image
@@ -77,7 +77,7 @@ export default function PatientProfile() {
                         </div>
                     }
                 </h3>
-                <span className="text-center">
+                <span className="spanPatientInfo text-center">
                     {!selectedPatient
                         ?
                         <div className="flex flex-col items-center">
@@ -92,7 +92,7 @@ export default function PatientProfile() {
                         </div>
                     }
                 </span>
-                <span className="text-center">
+                <span className="spanPatientInfo text-center mb-4">
                     {!selectedPatient
                         ?
                         <div className="flex flex-col items-center">
@@ -108,12 +108,12 @@ export default function PatientProfile() {
                     }
 
                 </span>
-            </div>
-            <div className="divPPMessage flex h-[10%] justify-center">
-                <button className="buttonPPMessage bg-blue-500 w-[200px] rounded-md text-[1.2rem] 
-                text-white font-bold hover:bg-blue-400 hover:cursor-pointer">
-                    <span>Send Message</span>
-                </button>
+                <div className="divPPMessage flex h-[50px] shrink-0 justify-center">
+                    <button className="buttonPPMessage bg-blue-500 w-[200px] rounded-md text-[1.2rem] 
+                    text-white font-bold hover:bg-blue-400 hover:cursor-pointer">
+                        <span>Send Message</span>
+                    </button>
+                </div>
             </div>
         </div>
     )

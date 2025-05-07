@@ -55,6 +55,9 @@ export const patientSlice = createSlice({
         state.chartHistory = [];
       }
       state.chartHistory.push(action.payload);
+      if (state.chartHistory.length > 20) {
+        state.chartHistory.shift();
+      }
     },
     setEmptyChartHistory(state) {
       state.chartHistory = [];
@@ -64,18 +67,21 @@ export const patientSlice = createSlice({
         state.chartLabels = [];
       }
       state.chartLabels.push(action.payload);
+      if (state.chartLabels.length > 20) {
+        state.chartLabels.shift();
+      }
     },
     setEmptyChartLabels(state) {
       state.chartLabels = [];
     },
-    
+
   }
 });
 
 export const {
-  setPatientId, setScrollPatientsList, setPatientData, 
-  setPatientDataFullList, setSearchPatient, setSelectedPatient, 
-  setSelectedPatientTelemetry,setChartHistory, setEmptyChartHistory, 
+  setPatientId, setScrollPatientsList, setPatientData,
+  setPatientDataFullList, setSearchPatient, setSelectedPatient,
+  setSelectedPatientTelemetry, setChartHistory, setEmptyChartHistory,
   setChartLabels, setEmptyChartLabels
 } = patientSlice.actions;
 export default patientSlice.reducer;

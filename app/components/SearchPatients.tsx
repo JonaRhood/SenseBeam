@@ -34,6 +34,7 @@ export default function SearchPatients() {
         const value = (e.target as HTMLInputElement).value;
         if (e.key === "Enter") {
             e.preventDefault();
+            inputRef.current?.blur();
             if (value.length === 0) {
                 dispatch(setSearchPatient("undefined"));
                 dispatch(setPatientData(patientDataFullList));
@@ -53,6 +54,7 @@ export default function SearchPatients() {
     const handleXIcon = () => {
         if (inputRef.current) {
             inputRef.current.value = "";
+            inputRef.current.blur();
         }
         dispatch(setSearchPatient("undefined"));
         dispatch(setPatientData(patientDataFullList));
