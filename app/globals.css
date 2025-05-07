@@ -491,6 +491,11 @@ body {
   .logo-container a {
     display: flex;
   }
+
+  .loaderDataChart {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @media only screen and (max-height: 540px) {
@@ -599,6 +604,53 @@ body {
 
   .tdPatientsList {
     padding-inline: 0px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .divPPData h3{
+    display: flex;
+    align-items: center;
+  }
+
+  .divPPData .divTitleSkel {
+    width: 130px;
+    height: 15px;
+    display: flex;
+  }
+
+  #dataOverviewTab span {
+    display: none;
+  }
+
+  #dataChartTab span {
+    display: none;
+  }
+
+  #dataOverviewTab::before {
+    content: "Overview";
+  }
+
+  #dataChartTab::before {
+    content: "Chart";
+  }
+
+  .divPPMessage {
+    justify-content: right;
+  }
+
+  .buttonPPMessage {
+    height: 33px;
+    width: 40px;
+  }
+
+  .buttonPPMessage::after {
+    content: "✉️";
+    font-size: 1.5rem;
+  }
+
+  .buttonPPMessage span {
+    display: none;
   }
 }
 

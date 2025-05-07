@@ -49,7 +49,9 @@ export default function PatientProfile() {
                                 className="object-cover bg-white"
                                 priority={true}
                                 loading={"eager"}
-                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
+                                sizes="(max-width: 600px) 100vw, 50vw"
+                            // unoptimized={true}
+                            // placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                             />
                         }
                     </div>
@@ -101,7 +103,7 @@ export default function PatientProfile() {
             <div className="divPPMessage flex h-[10%] justify-center">
                 <button className="buttonPPMessage bg-blue-500 w-[200px] rounded-md text-[1.2rem] 
                 text-white font-bold hover:bg-blue-400 hover:cursor-pointer">
-                    Send Message
+                    <span>Send Message</span>
                 </button>
             </div>
         </div>

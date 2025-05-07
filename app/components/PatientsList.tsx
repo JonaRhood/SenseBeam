@@ -60,6 +60,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
     // Scroll State Logic
     useEffect(() => {
         if (divRef.current) {
+            console.log("SCROLL")
             divRef.current.scrollTop = scrollPatientsList
         }
     }, [divRef])

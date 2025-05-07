@@ -1,7 +1,7 @@
 // app/pacientes/[patients]/page.tsx
 "use client";
 
-import { useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
 
@@ -12,7 +12,7 @@ export default function PatientTabs() {
     const pathname = usePathname();
     const dataOverviewTab = /^\/pacientes\/\d+\/?$/.test(pathname);
     const datachartTab = /^\/pacientes\/\d+\/datachart\/?$/.test(pathname);
-    
+
     const router = useRouter();
 
     const handleCloseModal = () => {
@@ -33,16 +33,18 @@ export default function PatientTabs() {
     return (
         <div className="divTabs flex h-[30px]">
             <div
+                id="dataOverviewTab"
                 className={`divPatientTab w-[48%] flex justify-center items-center ${dataOverviewTab ? "" : "unselectedFirstTab"}`}
                 onClick={() => handleTabSelection(1)}
             >
-                Sensor Data Overview
+                <span>Sensor Data Overview</span>
             </div>
             <div
+                id="dataChartTab"
                 className={`divPatientTab w-[48%] flex justify-center items-center ${datachartTab ? "" : "unselectedTab"}`}
                 onClick={() => handleTabSelection(2)}
             >
-                Sensor Data Chart
+                <span>Sensor Data Chart</span>
             </div>
             <div className="divPatientTabX w-[4%] flex justify-center items-center closeTab">
                 <div
