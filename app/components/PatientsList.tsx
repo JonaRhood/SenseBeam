@@ -4,6 +4,7 @@
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation";
+import { toBase64, shimmer } from "@/utils/utils";
 import SkeletonPatientList from "@/utils/skeletons";
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -141,7 +142,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
                                             alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
                                             className="listImage rounded-full border-[1px] border-blue-300"
                                             loading="lazy"
-                                            quality={50}
+                                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                                         />
                                     </div>
                                 </td>

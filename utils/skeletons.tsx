@@ -9,12 +9,24 @@ export default function SkeletonPatientList() {
                         </div>
                     </div>
                 </td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
-                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center"><div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div></td>
+                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div>
+                </td>
+                <td className="tdPatientsList tdSkel"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div>
+                </td>
+                <td className="tdPatientsList tdSkel tdAge"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div>
+                </td>
+                <td className="tdPatientsList tdSkel tdGender"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div>
+                </td>
+                <td className="tdPatientsList tdSkel tdBloodGroup"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[50%]"></div></div>
+                </td>
+                <td className="tdPatientsList tdSkel tdEmail"> <div className="h-[20px] flex justify-center">
+                    <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[60%]"></div></div>
+                </td>
             </tr>
         );
     }

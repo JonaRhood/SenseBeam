@@ -1,4 +1,3 @@
-import DataOverviewTabs from './components/PatientTabs'
 import PatientProfile from './components/PatientProfile'
 import DataOverview from './components/DataOverView'
 

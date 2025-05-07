@@ -6,6 +6,7 @@ import { RootState } from "@/store/store"
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
+import { toBase64, shimmer } from "@/utils/utils";
 
 export default function PatientProfile() {
 
@@ -35,11 +36,6 @@ export default function PatientProfile() {
         }
     }, [])
 
-
-    // if (!selectedPatient) {
-    //     return <div>Loading patient data...</div>;
-    // }
-
     return (
         <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
             <div className="divPImage flex justify-center mb-2">
@@ -53,7 +49,7 @@ export default function PatientProfile() {
                                 className="object-cover bg-white"
                                 priority={true}
                                 loading={"eager"}
-                                
+                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                             />
                         }
                     </div>
