@@ -7,10 +7,6 @@ import BloodChart from "./BloodChart";
 export default function DataChart() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
 
-    // if (!selectedPatientTelemetry) {
-    //     return <div>Loading patient data..</div>;
-    // }
-
     return (
         <section className="sectionDataChart flex flex-col justify-between items-center w-full h-full 
         border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg">

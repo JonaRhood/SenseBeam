@@ -1,12 +1,11 @@
 "use client"
 
 import { useAppSelector, useAppDispatch } from "@/store/hooks"
-import { setSelectedPatient } from "@/store/slices/patientSlice";
+import { setSelectedPatient, setPatientId, setEmptyChartHistory, setEmptyChartLabels, setSelectedPatientTelemetry } from "@/store/slices/patientSlice";
 import { RootState } from "@/store/store"
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
-import { toBase64, shimmer } from "@/utils/utils";
 
 export default function PatientProfile() {
 
@@ -14,27 +13,38 @@ export default function PatientProfile() {
     const patientId = Number(patient)
 
     const selectedPatient = useAppSelector((state: RootState) => state.patient.selectedPatient);
+    const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
     const dispatch = useAppDispatch()
 
-
+    // Fetch and Back/Forward Logic
     useEffect(() => {
-        const fetchDataPatient = async (userId: number) => {
-            try {
-                const response = await fetch(`https://dummyjson.com/users/${userId}`);
-                const result = await response.json();
-
-                dispatch(setSelectedPatient(result));
-                console.log("FETCHDATA", result)
-
-            } catch (err) {
-                throw new Error("Error Fetching Patient Data");
-            }
-        }
-
         if (!selectedPatient) {
             fetchDataPatient(patientId)
+        } else {
+            if (patientId !== selectedPatient.id) {
+                if (patientDataFullList) {
+                    dispatch(setSelectedPatient(patientDataFullList.find((p: any) => p.id === patientId)));
+                    dispatch(setPatientId(patientId))
+                    dispatch(setEmptyChartHistory());
+                    dispatch(setEmptyChartLabels());
+                } else {
+                    fetchDataPatient(patientId)
+                }
+            }
         }
     }, [])
+
+    const fetchDataPatient = async (userId: number) => {
+        try {
+            const response = await fetch(`https://dummyjson.com/users/${userId}`);
+            const result = await response.json();
+
+            dispatch(setSelectedPatient(result));
+
+        } catch (err) {
+            throw new Error("Error Fetching Patient Data");
+        }
+    }
 
     return (
         <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
@@ -50,8 +60,7 @@ export default function PatientProfile() {
                                 priority={true}
                                 loading={"eager"}
                                 sizes="(max-width: 600px) 100vw, 50vw"
-                            // unoptimized={true}
-                            // placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
+                                id={selectedPatient?.id}
                             />
                         }
                     </div>
