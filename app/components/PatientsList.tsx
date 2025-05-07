@@ -15,11 +15,6 @@ import {
     setEmptyChartLabels
 } from "@/store/slices/patientSlice";
 
-
-interface PatientsListProps {
-    searchText: string;
-}
-
 interface Patient {
     id: number,
     image: string,
@@ -31,8 +26,7 @@ interface Patient {
     email: string,
 }
 
-export default function PatientsList({ searchText }: PatientsListProps) {
-
+export default function PatientsList() {
     const patientData = useAppSelector((state: RootState) => state.patient.patientData);
     const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
     const scrollPatientsList = useAppSelector((state: RootState) => state.patient.scrollPatientsList);
@@ -41,7 +35,7 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
     const router = useRouter();
 
-    // Data Fetch Logic
+    // Data Fetch Async Logic
     useEffect(() => {
         if (patientDataFullList && patientDataFullList.length > 0) return;
         const fetchPatients = async () => {
@@ -50,29 +44,18 @@ export default function PatientsList({ searchText }: PatientsListProps) {
 
             result.users.sort((a: Patient, b: Patient) => a.lastName.localeCompare(b.lastName));
 
-            console.log(result.users)
             dispatch(setPatientData(result.users))
             dispatch(setPatientDataFullList(result.users))
         }
         fetchPatients();
     }, []);
 
-    // Scroll State Logic
+    // Scroll State Async Logic
     useEffect(() => {
         if (divRef.current) {
-            console.log("SCROLL")
             divRef.current.scrollTop = scrollPatientsList
         }
     }, [divRef])
-
-    useEffect(() => {
-        if (searchText === "]") return;
-        const inputSearch = patientDataFullList?.filter((patient: any) => {
-            const fullName = `${patient.firstName} ${patient.lastName}`.toLowerCase();
-            return fullName.includes(searchText.toLowerCase());
-        });
-        dispatch(setPatientData(inputSearch));
-    }, [searchText]);
 
 
     const [filter, setFilter] = useState<string>("ASC");

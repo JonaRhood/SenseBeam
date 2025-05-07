@@ -6,6 +6,7 @@ interface GalleryState {
   scrollPatientsList: number,
   patientData: any,
   patientDataFullList: any,
+  searchPatient: string,
   selectedPatient: any,
   selectedPatientTelemetry: any,
   chartHistory: any,
@@ -17,6 +18,7 @@ const initialState: GalleryState = {
   scrollPatientsList: 0,
   patientData: [],
   patientDataFullList: [],
+  searchPatient: "undefined",
   selectedPatient: [],
   selectedPatientTelemetry: [],
   chartHistory: [],
@@ -27,7 +29,7 @@ export const patientSlice = createSlice({
   name: "patient",
   initialState,
   reducers: {
-    setPatientId(state, action: PayloadAction<number>) {
+    setPatientId(state, action: PayloadAction<number | undefined>) {
       state.patientId = action.payload;
     },
     setScrollPatientsList(state, action: PayloadAction<number>) {
@@ -38,6 +40,9 @@ export const patientSlice = createSlice({
     },
     setPatientDataFullList(state, action: PayloadAction<any>) {
       state.patientDataFullList = action.payload;
+    },
+    setSearchPatient(state, action: PayloadAction<string>) {
+      state.searchPatient = action.payload;
     },
     setSelectedPatient(state, action: PayloadAction<any>) {
       state.selectedPatient = action.payload;
@@ -69,8 +74,9 @@ export const patientSlice = createSlice({
 
 export const {
   setPatientId, setScrollPatientsList, setPatientData, 
-  setPatientDataFullList, setSelectedPatient, setSelectedPatientTelemetry,
-  setChartHistory, setEmptyChartHistory, setChartLabels, setEmptyChartLabels
+  setPatientDataFullList, setSearchPatient, setSelectedPatient, 
+  setSelectedPatientTelemetry,setChartHistory, setEmptyChartHistory, 
+  setChartLabels, setEmptyChartLabels
 } = patientSlice.actions;
 export default patientSlice.reducer;
 

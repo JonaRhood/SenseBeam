@@ -8,7 +8,6 @@ import Logo from "./components/Logo";
 import Link from "next/link";
 import "./globals.css";
 import { PreloadResources } from "./preload-resources";
-import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,13 +38,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const cookieStore = await cookies();
-  const raw = cookieStore.get("patientTab")?.value ?? "1";
-  const patientTab = Number(raw);
-
   const initialReduxState = {
     patient: {
-      patientTab,
+      setPatientId: undefined,
     }
   };
 

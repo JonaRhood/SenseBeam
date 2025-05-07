@@ -1,21 +1,47 @@
 // app/components/SearchPatients.tsx
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import PatientsList from "./PatientsList"
 import SearchIcon from "./icons/SearchIcon";
 import XIcon from "./icons/XIcon";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { RootState } from "@/store/store";
+import { setSearchPatient, setPatientData } from "@/store/slices/patientSlice";
 
 export default function SearchPatients() {
-    const [searchText, setSearchText] = useState<string>("]");
+    const searchPatient = useAppSelector((state: RootState) => state.patient.searchPatient);
+    const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
     const [iconXOn, setIconXOn] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (searchPatient) {
+            if (searchPatient === "undefined") return;
+            const inputSearch = patientDataFullList?.filter((patient: any) => {
+                const fullName = `${patient.firstName} ${patient.lastName}`.toLowerCase();
+                return fullName.includes(searchPatient.toLowerCase());
+            });
+            if (inputRef.current) {
+                inputRef.current.value = searchPatient;
+            }
+            dispatch(setPatientData(inputSearch));
+            setIconXOn(true);
+        }
+    }, [searchPatient]);
 
     const inputSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value;
         if (e.key === "Enter") {
             e.preventDefault();
-            setSearchText(value);
-            return;
+            if (value.length === 0) {
+                dispatch(setSearchPatient("undefined"));
+                dispatch(setPatientData(patientDataFullList));
+                return;
+            } else {
+                dispatch(setSearchPatient(value));
+                return;
+            }
         }
         if (e.key === "Backspace" && value.length <= 1) {
             setIconXOn(false);
@@ -28,7 +54,8 @@ export default function SearchPatients() {
         if (inputRef.current) {
             inputRef.current.value = "";
         }
-        setSearchText("")
+        dispatch(setSearchPatient("undefined"));
+        dispatch(setPatientData(patientDataFullList));
         setIconXOn(false);
     }
 
@@ -60,7 +87,7 @@ export default function SearchPatients() {
                 </div>
             </div>
             <div className="flex h-[92svh] justify-center overflow-hidden">
-                <PatientsList searchText={searchText} />
+                <PatientsList />
             </div>
         </div>
     )

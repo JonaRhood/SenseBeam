@@ -129,7 +129,7 @@ body {
 
 .tBodyTr {
   -webkit-tap-highlight-color: rgba(0, 123, 255, 0.8);
-  touch-action: manipulation; 
+  touch-action: manipulation;
   transition: background-color 0.3s ease-in-out;
   -webkit-transition: background-color 0.3s ease-in-out;
   -moz-transition: background-color 0.3s ease-in-out;
@@ -142,12 +142,12 @@ body {
 }
 
 .tBodyTr:active {
-  background-color: rgba(0, 123, 255, 0.1);   
+  background-color: rgba(0, 123, 255, 0.1);
 }
 
 .divtablePatients {
   content-visibility: auto;
-  contain-intrinsic-size: 500px; 
+  contain-intrinsic-size: 500px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -184,12 +184,14 @@ body {
 
 /* ICONS */
 
-.xIcon:hover {
-  cursor: pointer;
-}
+@media (hover: hover) and (pointer: fine) {
+  .xIcon:hover {
+    cursor: pointer;
+  }
 
-.xIcon:hover path {
-  stroke: rgb(225, 0, 0);
+  .xIcon:hover path {
+    stroke: rgb(225, 0, 0);
+  }
 }
 
 /* SCROLLBAR */
@@ -221,20 +223,45 @@ body {
 
 /* SKELETON ANIMATION */
 @keyframes skeletonBorder {
-  0%   { border: 0.8px solid #e2f4ff; }
-  50%  { border: 0.8px solid #009dff; }
-  100% { border: 0.8px solid #e2f4ff; }
+  0% {
+    border: 0.8px solid #e2f4ff;
+  }
+
+  50% {
+    border: 0.8px solid #009dff;
+  }
+
+  100% {
+    border: 0.8px solid #e2f4ff;
+  }
 }
+
 @keyframes skeletonBG {
-  0%   { background-color: #ffffff; }
-  50%  { background-color: #e2f4ff; }
-  100% { background-color: #ffffff; }
+  0% {
+    background-color: #ffffff;
+  }
+
+  50% {
+    background-color: #e2f4ff;
+  }
+
+  100% {
+    background-color: #ffffff;
+  }
 }
 
 @keyframes skeletonBGText {
-  0%   { background-color: #eef9ff; }
-  50%  { background-color: #bae5ff; }
-  100% { background-color: #eef9ff; }
+  0% {
+    background-color: #eef9ff;
+  }
+
+  50% {
+    background-color: #bae5ff;
+  }
+
+  100% {
+    background-color: #eef9ff;
+  }
 }
 
 .tdSkel {
@@ -252,34 +279,113 @@ body {
   -webkit-animation: skeletonBGText 1.5s ease-in-out infinite;
 }
 
-.tdSkel:nth-child(1) { animation-delay: 0s; }
-.tdSkel:nth-child(2) { animation-delay: 0.1s; }
-.tdSkel:nth-child(3) { animation-delay: 0.2s; }
-.tdSkel:nth-child(4) { animation-delay: 0.3s; }
-.tdSkel:nth-child(5) { animation-delay: 0.4s; }
-.tdSkel:nth-child(6) { animation-delay: 0.5s; }
-.tdSkel:nth-child(7) { animation-delay: 0.6s; }
+.tdSkel:nth-child(1) {
+  animation-delay: 0s;
+}
 
-.tBodyTrSkel:nth-child(1) .skelImageList { animation-delay: -1.9s; }
-.tBodyTrSkel:nth-child(2) .skelImageList { animation-delay: -1.8s; }
-.tBodyTrSkel:nth-child(3) .skelImageList { animation-delay: -1.7s; }
-.tBodyTrSkel:nth-child(4) .skelImageList { animation-delay: -1.6s; }
-.tBodyTrSkel:nth-child(5) .skelImageList { animation-delay: -1.5s; }
-.tBodyTrSkel:nth-child(6) .skelImageList { animation-delay: -1.4s; }
-.tBodyTrSkel:nth-child(7) .skelImageList { animation-delay: -1.3s; }
-.tBodyTrSkel:nth-child(8) .skelImageList { animation-delay: -1.2s; }
-.tBodyTrSkel:nth-child(9) .skelImageList { animation-delay: -1.1s; }
-.tBodyTrSkel:nth-child(10) .skelImageList { animation-delay: -1.0s; }
-.tBodyTrSkel:nth-child(11) .skelImageList { animation-delay: -0.9s; }
-.tBodyTrSkel:nth-child(12) .skelImageList { animation-delay: -0.8s; }
-.tBodyTrSkel:nth-child(13) .skelImageList { animation-delay: -0.7s; }
-.tBodyTrSkel:nth-child(14) .skelImageList { animation-delay: -0.6s; }
-.tBodyTrSkel:nth-child(15) .skelImageList { animation-delay: -0.5s; }
-.tBodyTrSkel:nth-child(16) .skelImageList { animation-delay: -0.4s; }
-.tBodyTrSkel:nth-child(17) .skelImageList { animation-delay: -0.3s; }
-.tBodyTrSkel:nth-child(18) .skelImageList { animation-delay: -0.2s; }
-.tBodyTrSkel:nth-child(19) .skelImageList { animation-delay: -0.1s; }
-.tBodyTrSkel:nth-child(20) .skelImageList { animation-delay: 0s; }
+.tdSkel:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.tdSkel:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.tdSkel:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.tdSkel:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.tdSkel:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.tdSkel:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+.tBodyTrSkel:nth-child(1) .skelImageList {
+  animation-delay: -1.9s;
+}
+
+.tBodyTrSkel:nth-child(2) .skelImageList {
+  animation-delay: -1.8s;
+}
+
+.tBodyTrSkel:nth-child(3) .skelImageList {
+  animation-delay: -1.7s;
+}
+
+.tBodyTrSkel:nth-child(4) .skelImageList {
+  animation-delay: -1.6s;
+}
+
+.tBodyTrSkel:nth-child(5) .skelImageList {
+  animation-delay: -1.5s;
+}
+
+.tBodyTrSkel:nth-child(6) .skelImageList {
+  animation-delay: -1.4s;
+}
+
+.tBodyTrSkel:nth-child(7) .skelImageList {
+  animation-delay: -1.3s;
+}
+
+.tBodyTrSkel:nth-child(8) .skelImageList {
+  animation-delay: -1.2s;
+}
+
+.tBodyTrSkel:nth-child(9) .skelImageList {
+  animation-delay: -1.1s;
+}
+
+.tBodyTrSkel:nth-child(10) .skelImageList {
+  animation-delay: -1.0s;
+}
+
+.tBodyTrSkel:nth-child(11) .skelImageList {
+  animation-delay: -0.9s;
+}
+
+.tBodyTrSkel:nth-child(12) .skelImageList {
+  animation-delay: -0.8s;
+}
+
+.tBodyTrSkel:nth-child(13) .skelImageList {
+  animation-delay: -0.7s;
+}
+
+.tBodyTrSkel:nth-child(14) .skelImageList {
+  animation-delay: -0.6s;
+}
+
+.tBodyTrSkel:nth-child(15) .skelImageList {
+  animation-delay: -0.5s;
+}
+
+.tBodyTrSkel:nth-child(16) .skelImageList {
+  animation-delay: -0.4s;
+}
+
+.tBodyTrSkel:nth-child(17) .skelImageList {
+  animation-delay: -0.3s;
+}
+
+.tBodyTrSkel:nth-child(18) .skelImageList {
+  animation-delay: -0.2s;
+}
+
+.tBodyTrSkel:nth-child(19) .skelImageList {
+  animation-delay: -0.1s;
+}
+
+.tBodyTrSkel:nth-child(20) .skelImageList {
+  animation-delay: 0s;
+}
 
 /* LOADER DATA OVERVIEW */
 .loaderOverview {
@@ -400,7 +506,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 787px) {
+@media only screen and (max-width: 890px) {
   .divSearchIcon {
     width: 80%;
   }
@@ -437,10 +543,11 @@ body {
   }
 }
 
-@media only screen and (max-width: 582px) {
+@media only screen and (max-width: 596px) {
   .divPImage {
     width: 12%;
   }
+
   .sectionDataOverview h2 {
     font-size: 1.2rem;
   }
@@ -474,14 +581,6 @@ body {
     height: 8svh;
   }
 
-  .childrenLayout {
-    height: 92svh;
-  }
-
-  .divChildrenLayout {
-    height: 90svh !important;
-  }
-
   .logo-container {
     height: 100%;
     display: flex;
@@ -496,65 +595,7 @@ body {
     width: 80px;
     height: 80px;
   }
-}
 
-@media only screen and (max-height: 540px) {
-  .divPatientPage {
-    padding: 0;
-  }
-
-  .divPatientProfile {
-    display: none;
-  }
-
-  .chartjs-render-monitor + * .tick text {
-    border: 2px solid red;
-  }
-
-  .divPOverview {
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .sectionDataOverview {
-    background-color: white;
-    border: 0;
-  }
-
-  .divFirstChart {
-    height: 100%;
-  }
-
-  .divSecondChart {
-    display: none;
-  }
-
-  .sectionDataOverview h2 {
-    background-color: white;
-    border-bottom: 1px solid rgb(213, 245, 255);
-  }
-
-  .sectionDataOverview p {
-    padding: 0;
-  }
-
-  .sectionDataChart {
-    background-color: white;
-    border: 0;
-  }
-
-  .sectionDataChart h2 {
-    background-color: white;
-    border-bottom: 1px solid rgb(213, 245, 255);
-  }
-
-  .sectionDataChart p {
-    padding: 0;
-  }
-}
-
-@media only screen and (max-width: 496px) {
   html {
     background: #beeaff;
   }
@@ -607,8 +648,66 @@ body {
   }
 }
 
+@media only screen and (max-height: 540px) {
+  .divPatientPage {
+    padding: 0;
+  }
+
+  .divPatientProfile {
+    display: none;
+  }
+
+  .chartjs-render-monitor+* .tick text {
+    border: 2px solid red;
+  }
+
+  .divPOverview {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sectionDataOverview {
+    background-color: white;
+    border: 0;
+  }
+
+  .divFirstChart {
+    height: 100%;
+  }
+
+  .divSecondChart {
+    display: none;
+  }
+
+  .sectionDataOverview h2 {
+    background-color: white;
+    border-bottom: 1px solid rgb(213, 245, 255);
+  }
+
+  .sectionDataOverview p {
+    padding: 0;
+  }
+
+  .sectionDataChart {
+    background-color: white;
+    border: 0;
+  }
+
+  .sectionDataChart h2 {
+    background-color: white;
+    border-bottom: 1px solid rgb(213, 245, 255);
+  }
+
+  .sectionDataChart p {
+    padding: 0;
+  }
+}
+
+
+
 @media only screen and (max-width: 440px) {
-  .divPPData h3{
+  .divPPData h3 {
     display: flex;
     align-items: center;
   }
