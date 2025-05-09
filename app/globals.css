@@ -423,6 +423,7 @@ body {
     flex-direction: column;
     padding: 0;
     gap: 0;
+    align-items: center;
   }
 
   .divTitleSkel {
@@ -483,9 +484,8 @@ body {
   }
 
   .divPOverview {
-    width: 100%;
-    padding: 0 5%;
-    padding-bottom: 5%;
+    width: 90%;
+    height: 72svh;
   }
 
   .sectionDataOverview ul li {

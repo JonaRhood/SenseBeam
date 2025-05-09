@@ -42,6 +42,5 @@ export default function Logo() {
                 </defs>
             </svg>
         </div>
-
     )
 }

@@ -1,7 +1,7 @@
 // features/gallery/gallerySlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface GalleryState {
+interface PatientState {
   patientId: number | undefined,
   scrollPatientsList: number,
   patientData: any,
@@ -13,7 +13,7 @@ interface GalleryState {
   chartLabels: string[],
 }
 
-const initialState: GalleryState = {
+const initialState: PatientState = {
   patientId: undefined,
   scrollPatientsList: 0,
   patientData: [],

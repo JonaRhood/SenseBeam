@@ -118,8 +118,6 @@ Jonathan Cano -  jonathancanofreta@gmail.com
 [typescript-url]: https://www.typescriptlang.org/
 [Javascript.js]: https://img.shields.io/badge/Javascript-20232A?style=for-the-badge&logo=JavaScript&logoColor=Y
 [Javascript-url]: https://developer.mozilla.org/es/docs/Web/JavaScript
-[Jest.js]: https://img.shields.io/badge/Jest.js-20232A?style=for-the-badge&logo=jest&logoColor=orange
-[Jest-url]: https://jestjs.io/
 [CSS.js]: https://img.shields.io/badge/CSS-20232A?style=for-the-badge&logo=css&logoColor=306af1
 [CSS-url]: https://developer.mozilla.org/es/docs/Web/CSS
 [HTML5.js]: https://img.shields.io/badge/HTML5-20232A?style=for-the-badge&logo=html5&logoColor=e8571f

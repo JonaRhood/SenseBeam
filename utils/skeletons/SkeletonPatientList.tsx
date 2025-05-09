@@ -26,7 +26,7 @@ export default function SkeletonPatientList() {
                 </td>
                 <td className="tdPatientsList tdSkel tdEmail"> <div className="h-[20px] flex justify-center">
                     <div className="bg-[#def4ff] skelImageList rounded-full h-full w-[60%]"></div></div>
-                </td>                   
+                </td>
             </tr>
         );
     }

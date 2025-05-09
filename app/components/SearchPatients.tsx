@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import PatientsList from "./PatientsList"
-import SearchIcon from "./icons/SearchIcon";
-import XIcon from "./icons/XIcon";
+import SearchIcon from "../../utils/icons/SearchIcon";
+import XIcon from "../../utils/icons/XIcon";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { setSearchPatient, setPatientData } from "@/store/slices/patientSlice";

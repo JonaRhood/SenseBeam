@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 import { toBase64, shimmer } from "@/utils/utils";
-import SkeletonPatientList from "@/utils/skeletons";
+import SkeletonPatientList from "@/utils/skeletons/SkeletonPatientList";
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
@@ -52,7 +52,7 @@ export default function PatientsList() {
 
     // Scroll State Async Logic
     useEffect(() => {
-        if (divRef.current) {
+        if (divRef.current && patientData) {
             divRef.current.scrollTop = scrollPatientsList
         }
     }, [divRef])
@@ -79,14 +79,12 @@ export default function PatientsList() {
     };
 
     const handlePatientClick = (patient: any) => {
+        if (divRef.current) dispatch(setScrollPatientsList(divRef.current.scrollTop));
+        router.push(`/pacientes/${patient.id}`, { scroll: false })
         dispatch(setSelectedPatient(patient))
         dispatch(setPatientId(patient.id))
         dispatch(setEmptyChartHistory());
         dispatch(setEmptyChartLabels());
-        router.push(`/pacientes/${patient.id}`, { scroll: true })
-        if (divRef.current) {
-            dispatch(setScrollPatientsList(divRef.current.scrollTop));
-        }
     }
 
     return (
@@ -119,15 +117,20 @@ export default function PatientsList() {
                             >
                                 <td className="tdPatientsList">
                                     <div className="flex justify-center">
-                                        <Image
-                                            src={`${patient.image}`}
-                                            width={70}
-                                            height={70}
-                                            alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
-                                            className="listImage rounded-full border-[1px] border-blue-300"
-                                            loading="lazy"
-                                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
-                                        />
+                                        <div className="flex justify-center w-[70px] h-[70px] listImage rounded-full border-[1px] border-blue-300">
+                                            <Image
+                                                src={`${patient.image}`}
+                                                width={70}
+                                                height={70}
+                                                alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
+                                                className="rounded-full"
+                                                loading="lazy"
+                                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
+                                                onError={(e) => {
+                                                    e.currentTarget.className = 'hidden'
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </td>
                                 <td className="tdPatientsList">{patient.lastName}</td>
