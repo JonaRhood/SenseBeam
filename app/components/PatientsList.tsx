@@ -11,8 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import {
     setPatientId, setPatientData, setScrollPatientsList,
-    setPatientDataFullList, setSelectedPatient, setEmptyChartHistory,
-    setEmptyChartLabels
+    setSelectedPatient, setEmptyChartHistory, setEmptyChartLabels
 } from "@/store/slices/patientSlice";
 
 interface Patient {
@@ -27,36 +26,18 @@ interface Patient {
 }
 
 export default function PatientsList() {
-    const patientData = useAppSelector((state: RootState) => state.patient.patientData);
-    const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
-    const scrollPatientsList = useAppSelector((state: RootState) => state.patient.scrollPatientsList);
-    const dispatch = useAppDispatch();
-    const divRef = useRef<HTMLDivElement>(null);
-
     const router = useRouter();
 
-    // Data Fetch Async Logic
+    const patientData = useAppSelector((state: RootState) => state.patient.patientData);
+    const scrollPatientsList = useAppSelector((state: RootState) => state.patient.scrollPatientsList);
+    const divScrollRef = useRef<HTMLDivElement>(null);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        if (patientDataFullList && patientDataFullList.length > 0) return;
-        const fetchPatients = async () => {
-            const dataPatients = await fetch('https://dummyjson.com/users?limit=100&sortBy=id&order=asc');
-            const result = await dataPatients.json();
-
-            result.users.sort((a: Patient, b: Patient) => a.lastName.localeCompare(b.lastName));
-
-            dispatch(setPatientData(result.users))
-            dispatch(setPatientDataFullList(result.users))
-        }
-        fetchPatients();
-    }, []);
-
-    // Scroll State Async Logic
-    useEffect(() => {
-        if (divRef.current && patientData) {
-            divRef.current.scrollTop = scrollPatientsList
-        }
-    }, [divRef])
-
+        if (divScrollRef.current && patientData) {
+            divScrollRef.current.scrollTop = scrollPatientsList;
+        };
+    }, [divScrollRef]);
 
     const [filter, setFilter] = useState<string>("ASC");
 
@@ -67,30 +48,29 @@ export default function PatientsList() {
 
             if (typeof aValue === "number" && typeof bValue === "number") {
                 return filter === "ASC" ? aValue - bValue : bValue - aValue;
-            }
-
-            return filter === "ASC"
-                ? String(aValue).localeCompare(String(bValue))
-                : String(bValue).localeCompare(String(aValue));
+            } else {
+                return filter === "ASC"
+                    ? String(aValue).localeCompare(String(bValue))
+                    : String(bValue).localeCompare(String(aValue));
+            };
         });
-
         dispatch(setPatientData(sortedList));
-        setFilter(filter === "ASC" ? "DESC" : "ASC");
+        setFilter(prev => prev === "ASC" ? "DESC" : "ASC");
     };
 
     const handlePatientClick = (patient: any) => {
-        if (divRef.current) dispatch(setScrollPatientsList(divRef.current.scrollTop));
-        router.push(`/pacientes/${patient.id}`, { scroll: false })
-        dispatch(setSelectedPatient(patient))
+        if (divScrollRef.current) dispatch(setScrollPatientsList(divScrollRef.current.scrollTop));
+        router.push(`/pacientes/${patient.id}`, { scroll: false });
+        dispatch(setSelectedPatient(patient));
         dispatch(setPatientId(patient.id))
         dispatch(setEmptyChartHistory());
         dispatch(setEmptyChartLabels());
-    }
+    };
 
     return (
         <div
             className="divtablePatients flex w-full h-full overflow-hidden overflow-y-scroll"
-            ref={divRef}
+            ref={divScrollRef}
         >
             <table className="w-full rounded-md h-[0px]">
                 <thead className="sticky top-0 z-10 w-full">
@@ -104,7 +84,7 @@ export default function PatientsList() {
                         <th className="thPatientsList thEmail w-[28%]">Email</th>
                     </tr>
                 </thead>
-                <tbody className="">
+                <tbody>
                     {patientData
                         ?
                         patientData?.map((patient: any) => (
@@ -113,6 +93,7 @@ export default function PatientsList() {
                                 key={patient.id}
                                 className="tBodyTr"
                                 onClick={() => handlePatientClick(patient)}
+                                onPointerDown={() => console.log('ADIOS')}
                                 onMouseOver={() => router.prefetch(`pacientes/${patient.id}`)}
                             >
                                 <td className="tdPatientsList">
@@ -144,7 +125,6 @@ export default function PatientsList() {
                         :
                         <SkeletonPatientList />
                     }
-
                 </tbody>
             </table>
         </div>

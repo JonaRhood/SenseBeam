@@ -1,84 +1,38 @@
 "use client"
-
-import { useAppSelector, useAppDispatch } from "@/store/hooks"
-import { setSelectedPatient, setPatientId, setEmptyChartHistory, setEmptyChartLabels, setSelectedPatientTelemetry } from "@/store/slices/patientSlice";
-import { RootState } from "@/store/store"
-import { useParams } from "next/navigation";
-import { useEffect } from "react";
 import Image from "next/image";
 
-export default function PatientProfile() {
-
-    const { patient } = useParams()
-    const patientId = Number(patient)
-
-    const selectedPatient = useAppSelector((state: RootState) => state.patient.selectedPatient);
-    const patientDataFullList = useAppSelector((state: RootState) => state.patient.patientDataFullList);
-    const dispatch = useAppDispatch()
-
-    // Patient Fetch and Back/Forward Logic
-    useEffect(() => {
-        if (!selectedPatient) {
-            fetchDataPatient(patientId)
-        } else {
-            if (patientId !== selectedPatient.id) {
-                if (patientDataFullList) {
-                    dispatch(setSelectedPatient(patientDataFullList.find((p: any) => p.id === patientId)));
-                    dispatch(setPatientId(patientId))
-                    dispatch(setEmptyChartHistory());
-                    dispatch(setEmptyChartLabels());
-                } else {
-                    fetchDataPatient(patientId)
-                }
-            }
-        }
-    }, [])
-
-    const fetchDataPatient = async (userId: number) => {
-        try {
-            const response = await fetch(`https://dummyjson.com/users/${userId}`);
-            const result = await response.json();
-
-            dispatch(setSelectedPatient(result));
-
-        } catch (err) {
-            throw new Error("Error Fetching Patient Data");
-        }
-    }
-
+export default function PatientProfile({ patient }: { patient: any }) {
     return (
         <div className="divInnerPP w-full h-full flex flex-col justify-center align-middle py-8">
             <div className="divPImage flex justify-center mb-2">
                 <div className="divPImage2 flex aspect-square justify-center w-52">
                     <div className="w-full aspect-square relative overflow-hidden border-3 border-blue-300 rounded-full skelTextList">
-                        {selectedPatient &&
-                            <Image
-                                src={`${selectedPatient?.image}`}
-                                fill={true}
-                                alt={`Imagen de ${selectedPatient?.firstName} ${selectedPatient?.lastName}`}
-                                className="object-cover bg-white"
-                                priority={true}
-                                loading={"eager"}
-                                sizes="(max-width: 600px) 100vw, 50vw"
-                                id={selectedPatient?.id}
-                            />
-                        }
+                        <Image
+                            src={`${patient.image}`}
+                            fill={true}
+                            alt={`Imagen de ${patient.firstName} ${patient.lastName}`}
+                            className="object-cover bg-white"
+                            priority={true}
+                            loading={"eager"}
+                            sizes="(max-width: 600px) 100vw, 50vw"
+                            id={patient.id}
+                        />
                     </div>
                 </div>
             </div>
             <div className="divPPData flex flex-col h-[35%] items-center">
                 <h3 className="font-bold text-[1.5rem] whitespace-nowrap">
-                    {!selectedPatient
+                    {!patient
                         ?
                         <div className="divTitleSkel h-6 w-55 rounded-full skelTextList mb-3 mt-2"></div>
                         :
                         <div>
-                            {selectedPatient?.firstName} {selectedPatient?.lastName}, {selectedPatient?.age}
+                            {patient.firstName} {patient.lastName}, {patient.age}
                         </div>
                     }
                 </h3>
                 <span className="spanPatientInfo text-center">
-                    {!selectedPatient
+                    {!patient
                         ?
                         <div className="flex flex-col items-center">
                             <div className="h-4 mb-1 w-40 rounded-full skelTextList"></div>
@@ -86,14 +40,14 @@ export default function PatientProfile() {
                         </div>
                         :
                         <div>
-                            {selectedPatient?.phone}
+                            {patient.phone}
                             <br />
-                            {selectedPatient?.email}
+                            {patient.email}
                         </div>
                     }
                 </span>
                 <span className="spanPatientInfo text-center mb-4">
-                    {!selectedPatient
+                    {!patient
                         ?
                         <div className="flex flex-col items-center">
                             <div className="h-4 w-30 rounded-full skelTextList mb-1"></div>
@@ -101,9 +55,9 @@ export default function PatientProfile() {
                         </div>
                         :
                         <div>
-                            {selectedPatient?.address.address}
+                            {patient.address.address}
                             <br />
-                            {selectedPatient?.address.city}, {selectedPatient?.address.postalCode}
+                            {patient.address.city}, {patient.address.postalCode}
                         </div>
                     }
 

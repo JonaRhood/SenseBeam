@@ -1,7 +1,7 @@
 // app/components/SearchPatients.tsx
+"use client"
 
 import { useState, useEffect, useRef } from "react";
-import PatientsList from "./PatientsList"
 import SearchIcon from "../../utils/icons/SearchIcon";
 import XIcon from "../../utils/icons/XIcon";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
@@ -18,13 +18,11 @@ export default function SearchPatients() {
     useEffect(() => {
         if (searchPatient) {
             if (searchPatient === "undefined") return;
+            if (inputRef.current) inputRef.current.value = searchPatient;
             const inputSearch = patientDataFullList?.filter((patient: any) => {
                 const fullName = `${patient.firstName} ${patient.lastName}`.toLowerCase();
                 return fullName.includes(searchPatient.toLowerCase());
             });
-            if (inputRef.current) {
-                inputRef.current.value = searchPatient;
-            }
             dispatch(setPatientData(inputSearch));
             setIconXOn(true);
         }
@@ -87,9 +85,6 @@ export default function SearchPatients() {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex h-[92svh] justify-center overflow-hidden">
-                <PatientsList />
             </div>
         </div>
     )

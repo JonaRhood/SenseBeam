@@ -1,14 +1,18 @@
 // app/page.tsx
-
-'use client'
+"use server"
 
 import SearchPatients from "./components/SearchPatients"
+import PatientsList from "./components/PatientsList"
 
-export default function Home() {
-
+export default async function HomePage() {
   return (
     <div className="flex flex-col h-full">
-          <SearchPatients />
+      <div>
+        <SearchPatients />
+      </div>
+      <div className="flex h-[92svh] justify-center overflow-hidden">
+        <PatientsList />
+      </div>
     </div>
   )
 }

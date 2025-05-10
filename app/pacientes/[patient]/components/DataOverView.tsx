@@ -6,10 +6,6 @@ import { RootState } from "@/store/store"
 export default function DataOverview() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
 
-    // if (!selectedPatientTelemetry) {
-    //     return <div>Loading patient data...</div>;
-    // }
-
     return (
         <section className="sectionDataOverview flex flex-col justify-between w-full h-full
         border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg">

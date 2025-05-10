@@ -5,6 +5,7 @@ import { useRouter, usePathname, useParams } from "next/navigation";
 import { useState, useEffect, useTransition } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { startDataChartNavigation, startDataOverviewNavigation } from "@/store/slices/routingSlice";
+import Link from "next/link";
 
 export default function PatientTabs() {
     const router = useRouter();
@@ -53,10 +54,6 @@ export default function PatientTabs() {
                 break;
         }
     }
-    
-    const handleCloseModal = () => {
-        router.push('/', { scroll: false });
-    }
 
     return (
         <div className="divTabs flex h-[30px]">
@@ -76,14 +73,15 @@ export default function PatientTabs() {
             >
                 <span>Sensor Data Chart</span>
             </div>
-            <div className="divPatientTabX w-[4%] flex justify-center items-center closeTab">
-                <div
-                    className="flex items-center w-full h-full justify-center"
-                    onClick={() => handleCloseModal()}
-                >
-                    X
-                </div>
+            <div className="divPatientTabX w-[4%]  lex justify-center items-center ">
+                <Link href={"/"} className="flex closeTab h-full w-full justify-center" scroll={false}>
+                    <div>
+                        <div className="flex items-center w-full h-full justify-center">
+                            X
+                        </div>
+                    </div>
+                </Link>
             </div>
-        </div>
+        </div >
     )
 }

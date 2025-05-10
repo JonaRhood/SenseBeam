@@ -1,4 +1,3 @@
-
 // app/layout.tsx
 
 import { StoreProvider } from "./StoreProvider";
@@ -38,14 +37,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const initialReduxState = {
+  const res = await fetch('https://dummyjson.com/users?limit=100&sortBy=id&order=asc', {
+    cache: 'force-cache',
+  });
+  const { users } = await res.json();
+  users.sort((a: any, b: any) => a.lastName.localeCompare(b.lastName));
+
+  const initialState = {
     patient: {
-      setPatientId: undefined,
+      patientData: users,
+      patientDataFullList: users,
     }
   };
 
   return (
-    <StoreProvider initialState={initialReduxState}>
+    <StoreProvider initialState={initialState}>
       <html lang="en">
         <PreloadResources />
         <body
