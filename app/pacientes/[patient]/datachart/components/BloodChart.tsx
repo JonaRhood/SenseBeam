@@ -7,8 +7,8 @@ import { Line } from "react-chartjs-2";
 import '@/chartjs-setup'
 
 export default function BloodChart({ type }: { type: string }) {
-    const chartHistory = useAppSelector((state: RootState) => state.patient.chartHistory) ?? [];
-    const chartLabels = useAppSelector((state: RootState) => state.patient.chartLabels) ?? [];
+    const chartHistory = useAppSelector((state: RootState) => state.patient.chartHistory);
+    const chartLabels = useAppSelector((state: RootState) => state.patient.chartLabels);
 
     const options = {
         responsive: true,

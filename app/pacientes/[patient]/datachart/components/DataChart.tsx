@@ -7,6 +7,17 @@ import BloodChart from "./BloodChart";
 export default function DataChart() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
 
+    const formatted = new Date(selectedPatientTelemetry?.timestamp).toLocaleString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "Europe/Madrid"
+    });
+
     return (
         <section className="sectionDataChart flex flex-col justify-between items-center w-full h-full 
         border-2 border-blue-200 relative rounded-xl bg-blue-200/10 shadow-lg">
@@ -27,29 +38,16 @@ export default function DataChart() {
                         </div>
                     </>
                 }
-
             </div>
-
             <span className="text-sm text-gray-500 bg-[#d9efff] p-2 rounded-b-[0.6rem] flex justify-center w-full">
                 <span className="flex">
                     Last update: &nbsp;
-
                     {!selectedPatientTelemetry
                         ?
                         <div className="loaderOverview"></div>
                         :
-                        new Date(selectedPatientTelemetry?.timestamp).toLocaleString("es-ES", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "2-digit",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            second: "2-digit",
-                            hour12: false,
-                            timeZone: "Europe/Madrid"
-                        })
+                        formatted
                     }
-
                 </span>
             </span>
         </section>

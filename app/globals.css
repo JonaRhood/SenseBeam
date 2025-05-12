@@ -127,8 +127,18 @@ body {
   -o-transition: background-color 0.3s ease-in-out;
 }
 
+.divPatientTabX {
+  -webkit-tap-highlight-color: rgba(255, 125, 125, 0.3);
+  touch-action: manipulation;
+}
+
+.touchableTh {
+  -webkit-tap-highlight-color: rgba(62, 155, 255, 0.3);
+  touch-action: manipulation;
+}
+
 .tBodyTr {
-  -webkit-tap-highlight-color: rgba(0, 123, 255, 0.8);
+  -webkit-tap-highlight-color: rgba(125, 188, 255, 0.3);
   touch-action: manipulation;
   transition: background-color 0.3s ease-in-out;
   -webkit-transition: background-color 0.3s ease-in-out;
@@ -399,7 +409,7 @@ body {
 }
 
 .loaderDataChart {
-  border: 2.5px solid rgba(0, 153, 255, 0.5);
+  border: 2.5px solid rgba(114, 199, 255, 0.5);
   border-left-color: transparent;
   width: 100px;
   height: 100px;
@@ -642,6 +652,10 @@ body {
   .listImage {
     width: 60px;
     height: 60px;
+  }
+
+  .tdLink {
+    height: 71px;
   }
 
   .tdBloodGroup {

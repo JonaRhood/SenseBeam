@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image";
 
 export default function PatientProfile({ patient }: { patient: any }) {
@@ -22,45 +23,23 @@ export default function PatientProfile({ patient }: { patient: any }) {
             </div>
             <div className="divPPData flex flex-col h-[35%] items-center">
                 <h3 className="font-bold text-[1.5rem] whitespace-nowrap">
-                    {!patient
-                        ?
-                        <div className="divTitleSkel h-6 w-55 rounded-full skelTextList mb-3 mt-2"></div>
-                        :
-                        <div>
-                            {patient.firstName} {patient.lastName}, {patient.age}
-                        </div>
-                    }
+                    <div>
+                        {patient.firstName} {patient.lastName}, {patient.age}
+                    </div>
                 </h3>
                 <span className="spanPatientInfo text-center">
-                    {!patient
-                        ?
-                        <div className="flex flex-col items-center">
-                            <div className="h-4 mb-1 w-40 rounded-full skelTextList"></div>
-                            <div className="h-4 w-50 rounded-full skelTextList mb-2"></div>
-                        </div>
-                        :
-                        <div>
-                            {patient.phone}
-                            <br />
-                            {patient.email}
-                        </div>
-                    }
+                    <div>
+                        {patient.phone}
+                        <br />
+                        {patient.email}
+                    </div>
                 </span>
                 <span className="spanPatientInfo text-center mb-4">
-                    {!patient
-                        ?
-                        <div className="flex flex-col items-center">
-                            <div className="h-4 w-30 rounded-full skelTextList mb-1"></div>
-                            <div className="h-4 w-40 rounded-full skelTextList"></div>
-                        </div>
-                        :
-                        <div>
-                            {patient.address.address}
-                            <br />
-                            {patient.address.city}, {patient.address.postalCode}
-                        </div>
-                    }
-
+                    <div>
+                        {patient.address.address}
+                        <br />
+                        {patient.address.city}, {patient.address.postalCode}
+                    </div>
                 </span>
                 <div className="divPPMessage flex h-[50px] shrink-0 justify-center">
                     <button className="buttonPPMessage bg-blue-500 w-[200px] rounded-md text-[1.2rem] 

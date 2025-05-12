@@ -3,15 +3,14 @@
 
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
-import { useRouter } from "next/navigation";
-import { toBase64, shimmer } from "@/utils/utils";
+import Link from "next/link";
 import SkeletonPatientList from "@/utils/skeletons/SkeletonPatientList";
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import {
-    setPatientId, setPatientData, setScrollPatientsList,
-    setSelectedPatient, setEmptyChartHistory, setEmptyChartLabels
+    setPatientId, setPatientData,
+    setSelectedPatient, setEmptyChartHistory
 } from "@/store/slices/patientSlice";
 
 interface Patient {
@@ -26,16 +25,15 @@ interface Patient {
 }
 
 export default function PatientsList() {
-    const router = useRouter();
-
     const patientData = useAppSelector((state: RootState) => state.patient.patientData);
-    const scrollPatientsList = useAppSelector((state: RootState) => state.patient.scrollPatientsList);
+    const patientId = useAppSelector((state: RootState) => state.patient.patientId);
     const divScrollRef = useRef<HTMLDivElement>(null);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (divScrollRef.current && patientData) {
-            divScrollRef.current.scrollTop = scrollPatientsList;
+        if (divScrollRef.current && patientData.length) {
+            const patientTableRow = document.getElementById(`${patientId}`);
+            if (patientTableRow) patientTableRow.scrollIntoView({ behavior: "auto", block: "center" });
         };
     }, [divScrollRef]);
 
@@ -59,12 +57,9 @@ export default function PatientsList() {
     };
 
     const handlePatientClick = (patient: any) => {
-        if (divScrollRef.current) dispatch(setScrollPatientsList(divScrollRef.current.scrollTop));
-        router.push(`/pacientes/${patient.id}`, { scroll: false });
         dispatch(setSelectedPatient(patient));
         dispatch(setPatientId(patient.id))
         dispatch(setEmptyChartHistory());
-        dispatch(setEmptyChartLabels());
     };
 
     return (
@@ -74,14 +69,15 @@ export default function PatientsList() {
         >
             <table className="w-full rounded-md h-[0px]">
                 <thead className="sticky top-0 z-10 w-full">
-                    <tr>
+                    <tr className="relative">
                         <th className="thPatientsList w-[12%]">Imagen</th>
-                        <th className="thPatientsList w-[14%]" onClick={() => filterByType("lastName")}>Apellidos</th>
-                        <th className="thPatientsList w-[14%]" onClick={() => filterByType("firstName")}>Nombre</th>
-                        <th className="thPatientsList w-[10%] thAge" onClick={() => filterByType("age")}>Edad</th>
-                        <th className="thPatientsList w-[12%] thBloodGroup" onClick={() => filterByType("gender")}>Gender</th>
-                        <th className="thPatientsList w-[10%] thGender" onClick={() => filterByType("bloodGroup")}>ABO</th>
+                        <th className="thPatientsList touchableTh w-[14%]" onClick={() => filterByType("lastName")}>Apellidos</th>
+                        <th className="thPatientsList touchableTh w-[14%]" onClick={() => filterByType("firstName")}>Nombre</th>
+                        <th className="thPatientsList touchableTh w-[10%] thAge" onClick={() => filterByType("age")}>Edad</th>
+                        <th className="thPatientsList touchableTh w-[12%] thBloodGroup" onClick={() => filterByType("gender")}>Gender</th>
+                        <th className="thPatientsList touchableTh w-[10%] thGender" onClick={() => filterByType("bloodGroup")}>ABO</th>
                         <th className="thPatientsList thEmail w-[28%]">Email</th>
+                        <th className="w-[0.001%]"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,10 +87,8 @@ export default function PatientsList() {
                             <tr
                                 id={`${patient.id}`}
                                 key={patient.id}
-                                className="tBodyTr"
+                                className="tBodyTr relative"
                                 onClick={() => handlePatientClick(patient)}
-                                onPointerDown={() => console.log('ADIOS')}
-                                onMouseOver={() => router.prefetch(`pacientes/${patient.id}`)}
                             >
                                 <td className="tdPatientsList">
                                     <div className="flex justify-center">
@@ -106,7 +100,6 @@ export default function PatientsList() {
                                                 alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
                                                 className="rounded-full"
                                                 loading="lazy"
-                                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                                                 onError={(e) => {
                                                     e.currentTarget.className = 'hidden'
                                                 }}
@@ -120,6 +113,9 @@ export default function PatientsList() {
                                 <td className="tdPatientsList tdGender">{patient.gender}</td>
                                 <td className="tdPatientsList tdBloodGroup">{patient.bloodGroup}</td>
                                 <td className="tdPatientsList tdEmail">{patient.email}</td>
+                                <td className="absolute w-full flex h-[82px] left-0">
+                                    <Link href={`pacientes/${patient.id}`} className="tdLink flex w-full h-full"></Link>
+                                </td>
                             </tr>
                         ))
                         :

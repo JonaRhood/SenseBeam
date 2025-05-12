@@ -4,12 +4,13 @@ import { useEffect } from "react"
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { useParams } from "next/navigation";
-import { setSelectedPatientTelemetry } from "@/store/slices/patientSlice";
+import { setSelectedPatientTelemetry, setPatientId, setEmptyChartHistory  } from "@/store/slices/patientSlice";
 import { setChartLabels } from "@/store/slices/patientSlice";
 import { setChartHistory } from "@/store/slices/patientSlice";
 
 export default function WebSockets() {
     const selectedPatientTelemetry = useAppSelector((state: RootState) => state.patient.selectedPatientTelemetry);
+    const patientIdStore = useAppSelector((state: RootState) => state.patient.patientId);
     const dispatch = useAppDispatch();
 
     const params = useParams();
@@ -17,6 +18,12 @@ export default function WebSockets() {
     const patientId = Number(patient);
 
     useEffect(() => {
+        // Back/Forward State Logic
+        if (patientIdStore !== patientId) {
+            dispatch(setPatientId(patientId));
+            dispatch(setEmptyChartHistory());
+        };
+
         const ws = new WebSocket(`wss://sensebeam.azurewebsites.net/ws`)
         ws.onmessage = event => {
             const data = JSON.parse(event.data)
