@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import { toBase64, shimmer } from "@/utils/utils";
 
 export default function PatientProfile({ patient }: { patient: any }) {
     return (
@@ -17,6 +18,7 @@ export default function PatientProfile({ patient }: { patient: any }) {
                             loading={"eager"}
                             sizes="(max-width: 600px) 100vw, 50vw"
                             id={patient.id}
+                            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                         />
                     </div>
                 </div>

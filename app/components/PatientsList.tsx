@@ -4,10 +4,10 @@
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link";
-import SkeletonPatientList from "@/utils/skeletons/SkeletonPatientList";
 import Patient from "../pacientes/[patient]/page";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
+import { toBase64, shimmer } from "@/utils/utils";
 import {
     setPatientId, setPatientData,
     setSelectedPatient, setEmptyChartHistory
@@ -81,9 +81,7 @@ export default function PatientsList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {patientData
-                        ?
-                        patientData?.map((patient: any) => (
+                        {patientData?.map((patient: any) => (
                             <tr
                                 id={`${patient.id}`}
                                 key={patient.id}
@@ -100,10 +98,11 @@ export default function PatientsList() {
                                                 alt={`Imagen de ${patient.firstName} ${patient.lastName} `}
                                                 className="rounded-full"
                                                 loading="lazy"
+                                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer())}`}
                                                 onError={(e) => {
                                                     e.currentTarget.className = 'hidden'
                                                 }}
-                                            />
+                                                />
                                         </div>
                                     </div>
                                 </td>
@@ -114,13 +113,14 @@ export default function PatientsList() {
                                 <td className="tdPatientsList tdBloodGroup">{patient.bloodGroup}</td>
                                 <td className="tdPatientsList tdEmail">{patient.email}</td>
                                 <td className="absolute w-full flex h-[82px] left-0">
-                                    <Link href={`pacientes/${patient.id}`} className="tdLink flex w-full h-full"></Link>
+                                    <Link
+                                        href={`pacientes/${patient.id}`}
+                                        className="tdLink flex w-full h-full active:bg-blue-300/10"
+                                        scroll={false}
+                                    ></Link>
                                 </td>
                             </tr>
-                        ))
-                        :
-                        <SkeletonPatientList />
-                    }
+                        ))}
                 </tbody>
             </table>
         </div>

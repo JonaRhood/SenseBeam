@@ -58,7 +58,7 @@ export default function DataOverview() {
                     Last update: &nbsp;
                     {!selectedPatientTelemetry
                         ?
-                        <div className="loaderOverview"></div>
+                        <div className="w-[121px] h-[15px] self-center rounded-full skelTextList"></div>
                         :
                        formatted
                     }

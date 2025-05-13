@@ -103,6 +103,10 @@ body {
     -ms-transition: background-color 0.01s ease-in-out;
     -o-transition: background-color 0.01s ease-in-out;
   }
+
+  .closeTab:active {
+    background-color: rgb(255, 155, 155);
+  }
 }
 
 .closeTab {
@@ -148,7 +152,7 @@ body {
 }
 
 .tBodyTr:nth-child(2n) {
-  background-color: rgba(242, 250, 255, 0.8);
+  background-color: rgba(166, 227, 249, 0.1);
 }
 
 .tBodyTr:active {
@@ -173,7 +177,7 @@ body {
 
   .tBodyTr:hover {
     cursor: pointer;
-    background-color: #e7f6ff;
+    background-color: rgba(17, 180, 255, 0.1);
     transition: background-color 0.01s ease-in-out;
     -webkit-transition: background-color 0.01s ease-in-out;
     -moz-transition: background-color 0.01s ease-in-out;
@@ -183,7 +187,7 @@ body {
 }
 
 .tdPatientsList {
-  border: 0.8px solid #bde2ff;
+  border: 0.5px solid #bde2ff;
   padding: 5px;
   text-align: center;
 }

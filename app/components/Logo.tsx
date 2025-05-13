@@ -1,6 +1,5 @@
 export default function Logo() {
     return (
-        <div className="flex justify-center">
             <svg width="70%" viewBox="0 0 871 250" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M213 155.5C219.569 185.059 196.981 211.618 167.5 213.5C175 187 193 168.5 213 155.5Z" fill="url(#paint0_linear_1187_1384)" />
                 <path d="M153.5 136L148 126C154.015 125.075 156 124 164.5 120.5C171.5 122.5 177.5 124 182.5 124C198.5 127.5 210 140.5 213 155.5C193.065 168.79 173.938 190.089 167.5 213.5H116.5C135.5 208.5 151.5 194 155 176.5C183 177 184 137 153.5 136Z" fill="url(#paint1_linear_1187_1384)" />
@@ -41,6 +40,5 @@ export default function Logo() {
                     </linearGradient>
                 </defs>
             </svg>
-        </div>
     )
 }

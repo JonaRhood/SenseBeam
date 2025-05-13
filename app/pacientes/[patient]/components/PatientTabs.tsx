@@ -71,7 +71,7 @@ export default function PatientTabs() {
             >
                 <span>Sensor Data Chart</span>
             </div>
-            <div className="divPatientTabX w-[4%]  lex justify-center items-center ">
+            <div className="divPatientTabX w-[4%] lex justify-center items-center ">
                 <Link href={"/"} className="flex closeTab h-full w-full justify-center" scroll={false}>
                     <div>
                         <div className="flex items-center w-full h-full justify-center">

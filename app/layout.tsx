@@ -2,6 +2,7 @@
 
 import { StoreProvider } from "./StoreProvider";
 import type { Metadata } from "next";
+import NextTopLoader from 'nextjs-toploader';
 import { Geist, Geist_Mono } from "next/font/google";
 import Logo from "./components/Logo";
 import Link from "next/link";
@@ -61,12 +62,15 @@ export default async function RootLayout({
             <div className="divLogo h-[10svh] flex justify-center items-center">
               <div className="logo-container h-full flex justify-center">
                 <Link href={"/"} className="object-contain aspect-auto flex">
-                  <Logo />
+                  <div className="flex justify-center">
+                    <Logo />
+                  </div>
                 </Link>
               </div>
             </div>
             <div className="childrenLayout h-[90svh] px-10 flex justify-center">
               <div className="divChildrenLayout h-[85svh] w-full max-w-[1600px] bg-white border-[1px] border-blue-200 rounded-t-2xl relative">
+                <NextTopLoader showSpinner={false} />
                 {children}
               </div>
             </div>

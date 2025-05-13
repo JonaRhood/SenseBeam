@@ -11,7 +11,7 @@ export default function DataChartSkeleton() {
             <span className="text-sm text-gray-500 bg-[#d9efff] p-2 rounded-b-[0.6rem] flex justify-center w-full">
                 <span className="flex">
                     Last update: &nbsp;
-                    <div className="loaderOverview"></div>
+                    <div className="w-[117px] h-[15px] self-center rounded-full tdSkel"></div>
                 </span>
             </span>
         </section>
