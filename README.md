@@ -16,6 +16,8 @@
 
 **SenseBeam** is a web application built with React (Next.js) that allows users to view key telemetry data about patients. It is designed with a clean, responsive interface for easy navigation and data visualization, ideal for healthcare professionals.
 
+Live demo: [`https://sensebeam.netlify.app/`](https://sensebeam.netlify.app/)
+
 ## 📋 &nbsp; Table of Contents
 
 1. [Project Overview](#project-overview)

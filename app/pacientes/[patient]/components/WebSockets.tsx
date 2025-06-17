@@ -24,7 +24,7 @@ export default function WebSockets() {
             dispatch(setEmptyChartHistory());
         };
 
-        const ws = new WebSocket(`wss://sensebeam.azurewebsites.net/ws`)
+        const ws = new WebSocket(`wss://telemetry-ws-mock-api.onrender.com/ws`)
         ws.onmessage = event => {
             const data = JSON.parse(event.data)
             const user = data.find((data: any) => data.id == patientId);
